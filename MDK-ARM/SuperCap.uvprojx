@@ -94,7 +94,7 @@
           <SVCSIdString></SVCSIdString>
         </TargetCommonOption>
         <CommonProperty>
-          <UseCPPCompiler>0</UseCPPCompiler>
+          <UseCPPCompiler>2</UseCPPCompiler>
           <RVCTCodeConst>0</RVCTCodeConst>
           <RVCTZI>0</RVCTZI>
           <RVCTOtherData>0</RVCTOtherData>
@@ -1142,19 +1142,84 @@
               <FilePath>..\User\types.h</FilePath>
             </File>
             <File>
-              <FileName>tim_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\tim_task.c</FilePath>
+              <FileName>app_init.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\app_init.cpp</FilePath>
             </File>
             <File>
-              <FileName>can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\can.c</FilePath>
+              <FileName>pid_controller.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\pid_controller.cpp</FilePath>
             </File>
             <File>
-              <FileName>can.h</FileName>
+              <FileName>adc_sampler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\adc_sampler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>buckboost.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\buckboost.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>super_cap_comm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\super_cap_comm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>debug_interface.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\debug_interface.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>control_task.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\control_task.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>global_instances.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\global_instances.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>app_init.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\User\can.h</FilePath>
+              <FilePath>..\User\app_init.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid_controller.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\pid_controller.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>adc_sampler.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\adc_sampler.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>buckboost.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\buckboost.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>super_cap_comm.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\super_cap_comm.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>debug_interface.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\debug_interface.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>control_task.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\control_task.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>global_instances.hpp</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\global_instances.hpp</FilePath>
             </File>
           </Files>
         </Group>

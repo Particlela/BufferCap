@@ -29,7 +29,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "types.h"
-#include "can.h"
+#include "app_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -107,32 +107,7 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-	HAL_ADCEx_Calibration_Start(&hadc1,ADC_SINGLE_ENDED);
-	HAL_ADCEx_Calibration_Start(&hadc2,ADC_SINGLE_ENDED);
-	HAL_ADCEx_Calibration_Start(&hadc3,ADC_SINGLE_ENDED);
-	HAL_ADCEx_Calibration_Start(&hadc4,ADC_SINGLE_ENDED);
-	HAL_ADCEx_Calibration_Start(&hadc5,ADC_SINGLE_ENDED);
-	
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&Sample.vin, buf_len);
-	HAL_ADC_Start_DMA(&hadc2, (uint32_t*)&Sample.cout, buf_len);
-	HAL_ADC_Start_DMA(&hadc3, (uint32_t*)&Sample.vcap, buf_len); 
-	HAL_ADC_Start_DMA(&hadc4, (uint32_t*)&Sample.ccap, buf_len);
-	HAL_ADC_Start_DMA(&hadc5, (uint32_t*)&Sample.cin, buf_len);
-
-	HAL_HRTIM_WaveformCounterStart(&hhrtim1, HRTIM_TIMERID_TIMER_B | HRTIM_TIMERID_TIMER_E | HRTIM_TIMERID_MASTER);
-  HAL_HRTIM_WaveformOutputStart(&hhrtim1, HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2 | HRTIM_OUTPUT_TE1 | HRTIM_OUTPUT_TE2);
-	
-	// 注意限幅问题！！！电压达到25V附近主要依赖积分环起作用，所以积分限幅要大于25！
-	PI_init(&vloop, 0.06f, 0.00001f, 0.06f, 0.02f, -0.06f, -0.02f);//1号板 平衡缓冲电容
-	//PI_init(&vloop, 0.04f, 0.000015f, 0.06f, 0.005f, -0.06f, -0.005f);//2号板 全腿缓冲电容
-	PI_init(&ploop, 0.0f, 0.000005f, 0.06f, 0.06f, -0.06f, -0.06f);//0.0001f
-	
-	SuperCapCommInit(&Cap_Com);
-	can_filter_init();
-	
-	HAL_TIM_Base_Start_IT(&htim2);
-	HAL_TIM_Base_Start_IT(&htim3);
-	HAL_TIM_Base_Start_IT(&htim4);
+	super_cap_app_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
