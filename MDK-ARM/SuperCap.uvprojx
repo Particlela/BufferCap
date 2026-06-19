@@ -82,7 +82,7 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>1</RunUserProg2>
+            <RunUserProg2>0</RunUserProg2>
             <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
@@ -1157,9 +1157,9 @@
               <FilePath>..\User\adc_sampler.cpp</FilePath>
             </File>
             <File>
-              <FileName>buckboost.cpp</FileName>
+              <FileName>global_instances.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>..\User\buckboost.cpp</FilePath>
+              <FilePath>..\User\global_instances.cpp</FilePath>
             </File>
             <File>
               <FileName>super_cap_comm.cpp</FileName>
@@ -1172,19 +1172,24 @@
               <FilePath>..\User\debug_interface.cpp</FilePath>
             </File>
             <File>
+              <FileName>debug_vars.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\debug_vars.cpp</FilePath>
+            </File>
+            <File>
               <FileName>control_task.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>..\User\control_task.cpp</FilePath>
             </File>
             <File>
-              <FileName>global_instances.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>..\User\global_instances.cpp</FilePath>
-            </File>
-            <File>
               <FileName>app_init.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\User\app_init.h</FilePath>
+            </File>
+            <File>
+              <FileName>buckboost.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\User\buckboost.cpp</FilePath>
             </File>
             <File>
               <FileName>pid_controller.hpp</FileName>
@@ -1210,6 +1215,11 @@
               <FileName>debug_interface.hpp</FileName>
               <FileType>5</FileType>
               <FilePath>..\User\debug_interface.hpp</FilePath>
+            </File>
+            <File>
+              <FileName>debug_vars.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\User\debug_vars.h</FilePath>
             </File>
             <File>
               <FileName>control_task.hpp</FileName>

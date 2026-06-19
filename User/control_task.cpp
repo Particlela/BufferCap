@@ -16,6 +16,7 @@ extern "C" {
 
 #include "control_task.hpp"
 #include "global_instances.hpp"
+#include "debug_vars.h"
 
 namespace supercap {
 
@@ -29,7 +30,7 @@ void ControlTask::init()
     ploop_.init(0.0f, 0.000005f, 0.06f, 0.06f, -0.06f, -0.06f);
     // 母线电压环：放电时维持 Vin=22.5V
     // error = 22.5V - Vin，输出加到 ffd_ratio 上调节能量流动
-    bus_vloop_.init(0.1f, 0.00001f, 0.12f, 0.02f, -0.12f, -0.02f);
+    bus_vloop_.init(0.3f, 0.00001f, 0.2f, 0.02f, 0.0f, -0.02f);
 
     state_ = BufferCapState::kIdle;
 
@@ -61,6 +62,7 @@ void ControlTask::onTim2()
     softStart();
     computeControlLoop();
     updatePwm();
+    debugSync();
     debugger_.update(sampler_, *this, *comm_);
     debugger_.send();
 }
@@ -100,9 +102,12 @@ void ControlTask::computeControlLoop()
     float vcap = sampler_.vcap();
     float vin_clamped = (vin < 15.0f) ? 15.0f : vin;
     float ffd_ratio = vcap / vin_clamped;
+    float cloop_ratio;
+    float vloop_ratio;
 
     switch (state_) {
     case BufferCapState::kIdle:
+        //TODO: 如果是电容欠压导致的切入闲置，不应该使其等于ffd_ratio,应该使其等于 k_vcap_low / vin_clamped
         volt_ratio_ = ffd_ratio;
         // 母线电压高于充电阈值、电容未满、CAN 有效 → 开始充电
         if (vin > k_vin_charge_threshold && vcap < k_vcap_max && !can_disable_flag_) {
@@ -134,7 +139,7 @@ void ControlTask::computeControlLoop()
         // 充电功率目标来自 CAN 底盘指令
         bus_power_target_ = comm_->chassis2cap_msg.chassis_power;
         // TODO:仅测试
-        // bus_power_target_ = 30.0f;
+        bus_power_target_ = 50.0f;
         if (bus_power_target_ > power_set_) bus_power_target_ = power_set_;  // 软启动限制
         if (bus_power_target_ > k_p_charge_max) bus_power_target_ = k_p_charge_max;
         if (bus_power_target_ < 10.0f) bus_power_target_ = 10.0f;
@@ -143,11 +148,11 @@ void ControlTask::computeControlLoop()
         vloop_ref_ = vloop_.compute(vcap, k_vcap_target);
         cloop_ref_ = ploop_ref_;
 
-        {
-            float cloop_ratio = ffd_ratio + cloop_ref_;
-            float vloop_ratio = ffd_ratio + vloop_ref_;
-            volt_ratio_ = (vloop_ratio <= cloop_ratio) ? vloop_ratio : cloop_ratio;
-        }
+        cloop_ratio = ffd_ratio + cloop_ref_;
+        vloop_ratio = ffd_ratio + vloop_ref_;
+        volt_ratio_ = (vloop_ratio <= cloop_ratio) ? vloop_ratio : cloop_ratio;
+        g_dbg_ffd_ratio = ffd_ratio;
+        
         break;
 
     case BufferCapState::kVoltageReg:
@@ -186,9 +191,17 @@ void ControlTask::computeControlLoop()
             break;
         }
 
+        //TODO: 必须要求在该模式下放电，否则如果电池与负载的工作恰好使得母线电压工作在该区域（小于恢复阈值大于稳压的期望值）
+        // 会导致其不断给电容充电，造成严重的过压问题
+        // 故首先要保证pid的范围 > 0, 此外还需要通过电容的功率(正负)来判断电容处于充电或放电状态以决定是否要切出该模式
+        // 还可以通过电容电压是否大于 k_vcap_target 来判断是否需要切出该模式
+
+        // TODO: 放电时电容电压过低导致mos击穿问题，需要在该模式下添加保护机制
+
         // 母线电压环：主动放电维持 Vin=22.5V
         // error = 22.5V - Vin，Vin 低于目标时 error 为正，需要增强放电
         // 增强放电对应减小 volt_ratio（能量从电容流向母线）
+        // 该模式绝对不能充电
         bus_vloop_.compute(vin, k_vin_reg_target);
         volt_ratio_ = ffd_ratio - bus_vloop_.out;
         break;
@@ -263,6 +276,78 @@ void ControlTask::onTim4()
         can_div_cnt_ = 0;
         comm_->send();
     }
+}
+
+void ControlTask::debugSync()
+{
+    // ========== AdcSampler (通过公有 getter 访问) ==========
+    const Sample_struct_t *s = sampler_.sample_buf();
+    g_dbg_vin         = sampler_.vin();
+    g_dbg_cin         = sampler_.cin();
+    g_dbg_cout        = sampler_.cout();
+    g_dbg_vcap        = sampler_.vcap();
+    g_dbg_ccap        = sampler_.ccap();
+    g_dbg_vout        = sampler_.vout();
+    g_dbg_vin_last    = sampler_.vin_last();
+    g_dbg_vcap_last   = sampler_.vcap_last();
+
+    for (int i = 0; i < AdcSampler::k_buf_len; i++) {
+        g_dbg_raw_vin[i]  = s->vin[i];
+        g_dbg_raw_cin[i]  = s->cin[i];
+        g_dbg_raw_cout[i] = s->cout[i];
+        g_dbg_raw_vcap[i] = s->vcap[i];
+        g_dbg_raw_ccap[i] = s->ccap[i];
+    }
+
+    // ========== ControlTask ==========
+    g_dbg_state            = static_cast<uint8_t>(state_);
+    g_dbg_bus_power_target = bus_power_target_;
+    g_dbg_power_set        = power_set_;
+    g_dbg_cap_v_max        = cap_v_max_;
+    g_dbg_volt_ratio       = volt_ratio_;
+    g_dbg_ploop_ref        = ploop_ref_;
+    g_dbg_vloop_ref        = vloop_ref_;
+    g_dbg_cloop_ref        = cloop_ref_;
+    g_dbg_restart_flag     = restart_flag_;
+    g_dbg_can_disable_cnt  = can_disable_cnt_;
+    g_dbg_can_disable_flag = can_disable_flag_;
+    g_dbg_power_start_tick = power_start_tick_;
+    g_dbg_can_div_cnt      = can_div_cnt_;
+
+    // ========== PID 控制器 (成员均为 public) ==========
+    g_dbg_vloop_kp       = vloop_.kp;
+    g_dbg_vloop_ki       = vloop_.ki;
+    g_dbg_vloop_pout     = vloop_.pout;
+    g_dbg_vloop_iout     = vloop_.iout;
+    g_dbg_vloop_out      = vloop_.out;
+    g_dbg_vloop_err[0]   = vloop_.error[0];
+    g_dbg_vloop_err[1]   = vloop_.error[1];
+
+    g_dbg_ploop_kp       = ploop_.kp;
+    g_dbg_ploop_ki       = ploop_.ki;
+    g_dbg_ploop_pout     = ploop_.pout;
+    g_dbg_ploop_iout     = ploop_.iout;
+    g_dbg_ploop_out      = ploop_.out;
+    g_dbg_ploop_err[0]   = ploop_.error[0];
+    g_dbg_ploop_err[1]   = ploop_.error[1];
+
+    g_dbg_busvloop_kp       = bus_vloop_.kp;
+    g_dbg_busvloop_ki       = bus_vloop_.ki;
+    g_dbg_busvloop_pout     = bus_vloop_.pout;
+    g_dbg_busvloop_iout     = bus_vloop_.iout;
+    g_dbg_busvloop_out      = bus_vloop_.out;
+    g_dbg_busvloop_err[0]   = bus_vloop_.error[0];
+    g_dbg_busvloop_err[1]   = bus_vloop_.error[1];
+
+    // ========== Buck-Boost (通过公有 getter 访问) ==========
+    g_dbg_buck_duty  = converter_.buck_duty();
+    g_dbg_boost_duty = converter_.boost_duty();
+
+    // ========== CAN 通信 ==========
+    g_dbg_chassis_power = comm_->chassis2cap_msg.chassis_power;
+    g_dbg_cap_volt      = comm_->cap2chassis_msg.cap_volt;
+    g_dbg_outpower      = comm_->cap2chassis_msg.outpower;
+    g_dbg_can_last_tick = comm_->last_tick();
 }
 
 } // namespace supercap

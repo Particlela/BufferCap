@@ -39,8 +39,13 @@ struct SuperCap2ChassisMsg {
 
 class SuperCapComm {
 public:
-    static constexpr uint32_t kTxId = 0x114;
-    static constexpr uint32_t kRxId = 0x113;
+    // TODO: 缓冲电容
+    // static constexpr uint32_t kTxId = 0x114;
+    // static constexpr uint32_t kRxId = 0x113;
+
+    // TODO: 测试代码，用于关断
+    static constexpr uint32_t kTxId = 0x112; 
+    static constexpr uint32_t kRxId = 0x111; 
 
     void init();
 

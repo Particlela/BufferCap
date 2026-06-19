@@ -33,8 +33,15 @@
 "supercap\stm32g4xx_hal_uart.o"
 "supercap\stm32g4xx_hal_uart_ex.o"
 "supercap\system_stm32g4xx.o"
-"supercap\tim_task.o"
-"supercap\can.o"
+"supercap\app_init.o"
+"supercap\pid_controller.o"
+"supercap\adc_sampler.o"
+"supercap\global_instances.o"
+"supercap\super_cap_comm.o"
+"supercap\debug_interface.o"
+"supercap\debug_vars.o"
+"supercap\control_task.o"
+"supercap\buckboost.o"
 --strict --scatter "stm32g474xx_flash.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

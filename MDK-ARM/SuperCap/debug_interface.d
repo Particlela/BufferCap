@@ -1,5 +1,5 @@
-supercap/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
-  ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
+supercap/debug_interface.o: ..\User\debug_interface.cpp \
+  ..\Core\Inc\main.h ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h \
   ..\Core\Inc\stm32g4xx_hal_conf.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_rcc.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_def.h \
@@ -29,6 +29,8 @@ supercap/main.o: ..\Core\Src\main.c ..\Core\Inc\main.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart.h \
   ..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h \
-  ..\Core\Inc\adc.h ..\Core\Inc\dma.h ..\Core\Inc\fdcan.h \
-  ..\Core\Inc\hrtim.h ..\Core\Inc\tim.h ..\Core\Inc\usart.h \
-  ..\Core\Inc\gpio.h ..\User\types.h ..\User\app_init.h
+  ..\Core\Inc\usart.h ..\User\debug_interface.hpp \
+  ..\User\adc_sampler.hpp ..\Core\Inc\adc.h ..\Core\Inc\dma.h \
+  ..\User\types.h ..\User\super_cap_comm.hpp ..\Core\Inc\fdcan.h \
+  ..\User\control_task.hpp ..\Core\Inc\tim.h ..\User\pid_controller.hpp \
+  ..\User\buckboost.hpp ..\Core\Inc\hrtim.h

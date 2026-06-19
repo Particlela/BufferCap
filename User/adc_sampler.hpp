@@ -45,6 +45,7 @@ public:
     float pout() const { return vout_ * cout_; }
 
     void set_vout(float vout) { vout_ = vout; }
+    float vout() const { return vout_; }
 
     // 保留原始DMA缓冲区访问能力
     Sample_struct_t* sample_buf() { return &sample_; }

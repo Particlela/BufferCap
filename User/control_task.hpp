@@ -33,13 +33,14 @@ enum class BufferCapState : uint8_t {
 
 class ControlTask {
 public:
-    static constexpr uint16_t k_board_id = 1;
+    static constexpr uint16_t k_board_id = 0;
     static constexpr uint32_t k_soft_start_time = SOFT_START_TIME;
 
     // 电容电压相关
-    static constexpr float k_vcap_target = 28.5f;            // 电容目标电压
-    static constexpr float k_vcap_max = 29.5f;               // 电容最大允许电压
-    static constexpr float k_vcap_danger_low = 6.0f;        // 电容放电危险下限
+    static constexpr float k_vcap_target = 25.0f;            // 电容目标电压
+    static constexpr float k_vcap_max = 25.5f;               // 电容最大允许电压
+    static constexpr float k_vcap_danger_low = 12.0f;        // 电容放电危险下限
+    static constexpr float k_vcap_low = 12.5f;               // 电容因达到危险下限后需回到的电压
 
     // 母线电压阈值（滞回）
     static constexpr float k_vin_charge_threshold = 22.8f;   // 母线充电阈值
@@ -51,12 +52,12 @@ public:
 
     // 保护阈值
     static constexpr float k_vin_low_threshold = 15.0f;      // 母线欠压保护
-    static constexpr float k_vin_high_threshold = 29.0f;     // 母线过压保护
+    static constexpr float k_vin_high_threshold = 28.0f;     // 母线过压保护
     static constexpr float k_vin_recover_low = 16.0f;        // 母线恢复阈值
     static constexpr float k_vin_recover_high = 27.0f;       // 母线恢复阈值
-    static constexpr float k_vcap_overvolt = 29.0f;          // 电容过压保护
+    static constexpr float k_vcap_overvolt = 26.0f;          // 电容过压保护
 
-    static constexpr uint32_t k_can_timeout_ms = 500;
+    static constexpr uint32_t k_can_timeout_ms = 100;
 
     void init();
     void dispatch(TIM_HandleTypeDef *htim);
@@ -76,6 +77,7 @@ public:
 
     const AdcSampler& sampler() const { return sampler_; }
     const SuperCapComm& comm() const { return *comm_; }
+    void debugSync();
 
 private:
     void onTim2();
