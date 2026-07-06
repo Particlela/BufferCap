@@ -52,8 +52,8 @@ struct SuperCap2ChassisMsg {
 
 class SuperCapComm {
 public:
-    static constexpr uint32_t kTxId = 0x112;  ///< TX CAN ID (SuperCap → Chassis)
-    static constexpr uint32_t kRxId = 0x111;  ///< RX CAN ID (Chassis → SuperCap)
+    static constexpr uint32_t kTxId = 0x114;  ///< TX CAN ID (SuperCap → Chassis)
+    static constexpr uint32_t kRxId = 0x113;  ///< RX CAN ID (Chassis → SuperCap)
 
     void init();
 
