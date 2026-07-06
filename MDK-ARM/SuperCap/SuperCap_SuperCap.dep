@@ -40,7 +40,7 @@ I (..\Core\Inc\hrtim.h)(0x696B44B8)
 I (..\Core\Inc\tim.h)(0x6970F658)
 I (..\Core\Inc\usart.h)(0x696B44B8)
 I (..\Core\Inc\gpio.h)(0x696A3488)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\app_init.h)(0x6A33C4D2)
 F (../Core/Src/gpio.c)(0x696B44B4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/gpio.o -MMD)
 I (..\Core\Inc\gpio.h)(0x696A3488)
@@ -1021,7 +1021,7 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_tim_ex.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
-F (..\User\types.h)(0x6A4A644D)()
+F (..\User\types.h)(0x6A4A644C)()
 F (..\User\app_init.cpp)(0x6A33AE54)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/app_init.o -MMD)
 I (..\Core\Inc\main.h)(0x696A348A)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x68DAA8FE)
@@ -1058,12 +1058,12 @@ I (..\User\app_init.h)(0x6A33C4D2)
 I (..\User\global_instances.hpp)(0x6A33F6A8)
 I (..\User\super_cap_comm.hpp)(0x6A363372)
 I (..\Core\Inc\fdcan.h)(0x6970FFCC)
-I (..\User\control_task.hpp)(0x6A4A9AB4)
+I (..\User\control_task.hpp)(0x6A4BBCFC)
 I (..\Core\Inc\tim.h)(0x6970F658)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\pid_controller.hpp)(0x6A33ACF0)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
@@ -1136,8 +1136,8 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
+I (..\User\types.h)(0x6A4A644C)
 F (..\User\global_instances.cpp)(0x6A33ADF2)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/global_instances.o -MMD)
 I (..\Core\Inc\main.h)(0x696A348A)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x68DAA8FE)
@@ -1173,12 +1173,12 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\User\global_instances.hpp)(0x6A33F6A8)
 I (..\User\super_cap_comm.hpp)(0x6A363372)
 I (..\Core\Inc\fdcan.h)(0x6970FFCC)
-I (..\User\control_task.hpp)(0x6A4A9AB4)
+I (..\User\control_task.hpp)(0x6A4BBCFC)
 I (..\Core\Inc\tim.h)(0x6970F658)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\pid_controller.hpp)(0x6A33ACF0)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
@@ -1219,18 +1219,18 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\Core\Inc\fdcan.h)(0x6970FFCC)
 I (..\User\super_cap_comm.hpp)(0x6A363372)
 I (..\User\global_instances.hpp)(0x6A33F6A8)
-I (..\User\control_task.hpp)(0x6A4A9AB4)
+I (..\User\control_task.hpp)(0x6A4BBCFC)
 I (..\Core\Inc\tim.h)(0x6970F658)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\pid_controller.hpp)(0x6A33ACF0)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
 I (..\User\debug_interface.hpp)(0x6A33AD7C)
 I (..\Core\Inc\usart.h)(0x696B44B8)
-F (..\User\debug_interface.cpp)(0x6A363500)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/debug_interface.o -MMD)
+F (..\User\debug_interface.cpp)(0x6A4B67EC)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/debug_interface.o -MMD)
 I (..\Core\Inc\main.h)(0x696A348A)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x68DAA8FE)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x696B4502)
@@ -1264,20 +1264,20 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\Core\Inc\usart.h)(0x696B44B8)
 I (..\User\debug_interface.hpp)(0x6A33AD7C)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\super_cap_comm.hpp)(0x6A363372)
 I (..\Core\Inc\fdcan.h)(0x6970FFCC)
-I (..\User\control_task.hpp)(0x6A4A9AB4)
+I (..\User\control_task.hpp)(0x6A4BBCFC)
 I (..\Core\Inc\tim.h)(0x6970F658)
 I (..\User\pid_controller.hpp)(0x6A33ACF0)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
-F (..\User\debug_vars.cpp)(0x6A4A88B8)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/debug_vars.o -MMD)
-I (..\User\debug_vars.h)(0x6A4A88B8)
-F (..\User\control_task.cpp)(0x6A4A9AC1)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/control_task.o -MMD)
+F (..\User\debug_vars.cpp)(0x6A4BC645)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/debug_vars.o -MMD)
+I (..\User\debug_vars.h)(0x6A4BC62B)
+F (..\User\control_task.cpp)(0x6A4BC673)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/control_task.o -MMD)
 I (..\Core\Inc\main.h)(0x696A348A)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal.h)(0x68DAA8FE)
 I (..\Core\Inc\stm32g4xx_hal_conf.h)(0x696B4502)
@@ -1311,11 +1311,11 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart.h)(0x68DAA8FE)
 I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\Core\Inc\tim.h)(0x6970F658)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
-I (..\User\control_task.hpp)(0x6A4A9AB4)
-I (..\User\adc_sampler.hpp)(0x6A4A649D)
+I (..\User\control_task.hpp)(0x6A4BBCFC)
+I (..\User\adc_sampler.hpp)(0x6A4A649C)
 I (..\Core\Inc\adc.h)(0x696A348A)
 I (..\Core\Inc\dma.h)(0x696A37AC)
-I (..\User\types.h)(0x6A4A644D)
+I (..\User\types.h)(0x6A4A644C)
 I (..\User\pid_controller.hpp)(0x6A33ACF0)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 I (..\User\super_cap_comm.hpp)(0x6A363372)
@@ -1323,7 +1323,7 @@ I (..\Core\Inc\fdcan.h)(0x6970FFCC)
 I (..\User\debug_interface.hpp)(0x6A33AD7C)
 I (..\Core\Inc\usart.h)(0x696B44B8)
 I (..\User\global_instances.hpp)(0x6A33F6A8)
-I (..\User\debug_vars.h)(0x6A4A88B8)
+I (..\User\debug_vars.h)(0x6A4BC62B)
 F (..\User\app_init.h)(0x6A33C4D2)()
 F (..\User\buckboost.cpp)(0x6A33AD14)(-xc++ -std=c++11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions-gdwarf-4 -O3 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../Core/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc -I ../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I ../Drivers/CMSIS/Include -I ../User-I./RTE/_SuperCap-ID:/Keil_V6/Packs/ARM/CMSIS/6.2.0/CMSIS/Core/Include-ID:/Keil_V6/Packs/Keil/STM32G4xx_DFP/1.2.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include-D__UVISION_VERSION="543" -DSTM32G474xx -D_RTE_ -DUSE_HAL_DRIVER -DSTM32G474xx-o supercap/buckboost.o -MMD)
 I (..\Core\Inc\main.h)(0x696A348A)
@@ -1360,10 +1360,10 @@ I (..\Drivers\STM32G4xx_HAL_Driver\Inc\stm32g4xx_hal_uart_ex.h)(0x68DAA8FE)
 I (..\Core\Inc\hrtim.h)(0x696B44B8)
 I (..\User\buckboost.hpp)(0x6A33AD0E)
 F (..\User\pid_controller.hpp)(0x6A33ACF0)()
-F (..\User\adc_sampler.hpp)(0x6A4A649D)()
+F (..\User\adc_sampler.hpp)(0x6A4A649C)()
 F (..\User\buckboost.hpp)(0x6A33AD0E)()
 F (..\User\super_cap_comm.hpp)(0x6A363372)()
 F (..\User\debug_interface.hpp)(0x6A33AD7C)()
-F (..\User\debug_vars.h)(0x6A4A88B8)()
-F (..\User\control_task.hpp)(0x6A4A9AB4)()
+F (..\User\debug_vars.h)(0x6A4BC62B)()
+F (..\User\control_task.hpp)(0x6A4BBCFC)()
 F (..\User\global_instances.hpp)(0x6A33F6A8)()

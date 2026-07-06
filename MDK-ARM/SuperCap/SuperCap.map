@@ -1617,9 +1617,9 @@ Section Cross References
     control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask15sampleAndFilterEv) refers to control_task.o(.text._ZN8supercap11ControlTask15sampleAndFilterEv) for [Anonymous Symbol]
     control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask9softStartEv) refers to control_task.o(.text._ZN8supercap11ControlTask9softStartEv) for [Anonymous Symbol]
     control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to debug_vars.o(.bss.g_dbg_ffd_ratio) for g_dbg_ffd_ratio
-    control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to pid_controller.o(.text._ZN8supercap13PIDController5resetEv) for supercap::PIDController::reset()
     control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to hrtim.o(.bss.hhrtim1) for hhrtim1
     control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to stm32g4xx_hal_hrtim.o(.text.HAL_HRTIM_WaveformOutputStop) for HAL_HRTIM_WaveformOutputStop
+    control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to pid_controller.o(.text._ZN8supercap13PIDController5resetEv) for supercap::PIDController::reset()
     control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to pid_controller.o(.text._ZN8supercap13PIDController7computeEff) for supercap::PIDController::compute(float, float)
     control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask18computeControlLoopEv) refers to control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv) for [Anonymous Symbol]
     control_task.o(.text._ZN8supercap11ControlTask9updatePwmEv) refers to buckboost.o(.text._ZN8supercap18BuckBoostConverter6updateEf) for supercap::BuckBoostConverter::update(float)
@@ -1645,12 +1645,16 @@ Section Cross References
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_ploop_ref) for g_dbg_ploop_ref
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vloop_ref) for g_dbg_vloop_ref
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_cloop_ref) for g_dbg_cloop_ref
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_bus_vloop_out) for g_dbg_bus_vloop_out
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_restart_flag) for g_dbg_restart_flag
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_can_disable_cnt) for g_dbg_can_disable_cnt
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_can_disable_flag) for g_dbg_can_disable_flag
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_power_start_tick) for g_dbg_power_start_tick
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_can_div_cnt) for g_dbg_can_div_cnt
-    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_startup_charging) for g_dbg_startup_charging
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_clamp_active) for g_dbg_low_clamp_active
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_can_charge_cap) for g_dbg_can_charge_cap
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_pcap) for g_dbg_pcap
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_load_power_est) for g_dbg_load_power_est
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vcap_reg_target) for g_dbg_vcap_reg_target
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_work_tick) for g_dbg_work_tick
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vloop_kp) for g_dbg_vloop_kp
@@ -1659,6 +1663,18 @@ Section Cross References
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vloop_iout) for g_dbg_vloop_iout
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vloop_out) for g_dbg_vloop_out
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_vloop_err) for g_dbg_vloop_err
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_kp) for g_dbg_high_vloop_kp
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_ki) for g_dbg_high_vloop_ki
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_iout) for g_dbg_high_vloop_iout
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_pout) for g_dbg_high_vloop_pout
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_out) for g_dbg_high_vloop_out
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_high_vloop_err) for g_dbg_high_vloop_err
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_kp) for g_dbg_low_vloop_kp
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_ki) for g_dbg_low_vloop_ki
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_pout) for g_dbg_low_vloop_pout
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_iout) for g_dbg_low_vloop_iout
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_out) for g_dbg_low_vloop_out
+    control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_low_vloop_err) for g_dbg_low_vloop_err
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_ploop_kp) for g_dbg_ploop_kp
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_ploop_ki) for g_dbg_ploop_ki
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_ploop_pout) for g_dbg_ploop_pout
@@ -1676,6 +1692,8 @@ Section Cross References
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_battery_power) for g_dbg_battery_power
     control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) refers to debug_vars.o(.bss.g_dbg_can_last_tick) for g_dbg_can_last_tick
     control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask9debugSyncEv) refers to control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv) for [Anonymous Symbol]
+    control_task.o(.text._ZN8supercap11ControlTask17resetVoltageLoopsEv) refers to pid_controller.o(.text._ZN8supercap13PIDController5resetEv) for supercap::PIDController::reset()
+    control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask17resetVoltageLoopsEv) refers to control_task.o(.text._ZN8supercap11ControlTask17resetVoltageLoopsEv) for [Anonymous Symbol]
     control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv) refers to stm32g4xx_hal.o(.text.HAL_GetTick) for HAL_GetTick
     control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv) refers to hrtim.o(.bss.hhrtim1) for hhrtim1
     control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv) refers to stm32g4xx_hal_hrtim.o(.text.HAL_HRTIM_WaveformOutputStop) for HAL_HRTIM_WaveformOutputStop
@@ -3310,12 +3328,14 @@ Removing Unused input sections from the image.
     Removing control_task.o(.text._ZN8supercap11ControlTask9updatePwmEv), (14 bytes).
     Removing control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask9updatePwmEv), (8 bytes).
     Removing control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask9debugSyncEv), (8 bytes).
+    Removing control_task.o(.text._ZN8supercap11ControlTask17resetVoltageLoopsEv), (22 bytes).
+    Removing control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask17resetVoltageLoopsEv), (8 bytes).
     Removing control_task.o(.ARM.exidx.text._ZN8supercap11ControlTask15checkProtectionEv), (8 bytes).
     Removing control_task.o(.ARM.exidx.text.HAL_TIM_PeriodElapsedCallback), (8 bytes).
     Removing buckboost.o(.text), (0 bytes).
     Removing buckboost.o(.ARM.exidx.text._ZN8supercap18BuckBoostConverter6updateEf), (8 bytes).
 
-1477 unused section(s) (total 87768 bytes) removed from the image.
+1479 unused section(s) (total 87798 bytes) removed from the image.
 
 ==============================================================================
 
@@ -3661,66 +3681,67 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08006aac   Section        0  adc_sampler.o(.text._ZN8supercap10AdcSampler8startDMAEv)
     [Anonymous Symbol]                       0x08006b48   Section        0  adc_sampler.o(.text._ZN8supercap10AdcSampler9calibrateEt)
     [Anonymous Symbol]                       0x08006d70   Section        0  control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv)
-    [Anonymous Symbol]                       0x08006ef8   Section        0  control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv)
-    [Anonymous Symbol]                       0x0800746c   Section        0  control_task.o(.text._ZN8supercap11ControlTask4initEv)
-    [Anonymous Symbol]                       0x08007574   Section        0  control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev)
-    [Anonymous Symbol]                       0x08007674   Section        0  control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv)
-    [Anonymous Symbol]                       0x080079d4   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj)
-    [Anonymous Symbol]                       0x08007a68   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4initEv)
-    [Anonymous Symbol]                       0x08007ad0   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4sendEv)
-    [Anonymous Symbol]                       0x08007bd4   Section        0  pid_controller.o(.text._ZN8supercap13PIDController4initEffffff)
-    [Anonymous Symbol]                       0x08007bf8   Section        0  pid_controller.o(.text._ZN8supercap13PIDController5resetEv)
-    [Anonymous Symbol]                       0x08007c08   Section        0  pid_controller.o(.text._ZN8supercap13PIDController7computeEff)
-    [Anonymous Symbol]                       0x08007c88   Section        0  debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv)
-    [Anonymous Symbol]                       0x08007c98   Section        0  debug_interface.o(.text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE)
-    [Anonymous Symbol]                       0x08007d24   Section        0  buckboost.o(.text._ZN8supercap18BuckBoostConverter6updateEf)
-    [Anonymous Symbol]                       0x08007e68   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x08007f10   Section        0  app_init.o(.text.super_cap_app_init)
-    $v0                                      0x08007f1c   Number         0  d2f.o(x$fpl$d2f)
-    x$fpl$d2f                                0x08007f1c   Section       98  d2f.o(x$fpl$d2f)
-    $v0                                      0x08007f80   Number         0  daddsub_clz.o(x$fpl$dadd)
-    x$fpl$dadd                               0x08007f80   Section      336  daddsub_clz.o(x$fpl$dadd)
-    _dadd1                                   0x08007f91   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    $v0                                      0x080080d0   Number         0  dmul.o(x$fpl$dmul)
-    x$fpl$dmul                               0x080080d0   Section      340  dmul.o(x$fpl$dmul)
-    $v0                                      0x08008224   Number         0  dnaninf.o(x$fpl$dnaninf)
-    x$fpl$dnaninf                            0x08008224   Section      156  dnaninf.o(x$fpl$dnaninf)
-    $v0                                      0x080082c0   Number         0  dretinf.o(x$fpl$dretinf)
-    x$fpl$dretinf                            0x080082c0   Section       12  dretinf.o(x$fpl$dretinf)
-    $v0                                      0x080082cc   Number         0  daddsub_clz.o(x$fpl$dsub)
-    x$fpl$dsub                               0x080082cc   Section      476  daddsub_clz.o(x$fpl$dsub)
-    _dsub1                                   0x080082dd   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    $v0                                      0x080084a8   Number         0  f2d.o(x$fpl$f2d)
-    x$fpl$f2d                                0x080084a8   Section       86  f2d.o(x$fpl$f2d)
-    $v0                                      0x080084fe   Number         0  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fnaninf                            0x080084fe   Section      140  fnaninf.o(x$fpl$fnaninf)
-    $v0                                      0x0800858a   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x0800858a   Section       26  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x080085a4   Number         0  fretinf.o(x$fpl$fretinf)
-    x$fpl$fretinf                            0x080085a4   Section       10  fretinf.o(x$fpl$fretinf)
-    x$fpl$usenofp                            0x080085ae   Section        0  usenofp.o(x$fpl$usenofp)
-    DLCtoBytes                               0x080085de   Data          16  stm32g4xx_hal_fdcan.o(.rodata.cst16)
-    [Anonymous Symbol]                       0x080085de   Section        0  stm32g4xx_hal_fdcan.o(.rodata.cst16)
-    .Lswitch.table.UART_SetConfig.5          0x080085f0   Data          16  stm32g4xx_hal_uart.o(.rodata.cst16)
-    UARTEx_SetNbDataToProcess.numerator      0x08008600   Data           8  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
-    [Anonymous Symbol]                       0x08008600   Section        0  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
-    UARTEx_SetNbDataToProcess.denominator    0x08008608   Data           8  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
+    [Anonymous Symbol]                       0x08006ed8   Section        0  control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv)
+    __arm_cp.7_15                            0x080072f8   Number         4  control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv)
+    [Anonymous Symbol]                       0x08007530   Section        0  control_task.o(.text._ZN8supercap11ControlTask4initEv)
+    [Anonymous Symbol]                       0x0800765c   Section        0  control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev)
+    [Anonymous Symbol]                       0x08007774   Section        0  control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv)
+    [Anonymous Symbol]                       0x08007bc8   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj)
+    [Anonymous Symbol]                       0x08007c5c   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4initEv)
+    [Anonymous Symbol]                       0x08007cc4   Section        0  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4sendEv)
+    [Anonymous Symbol]                       0x08007dc8   Section        0  pid_controller.o(.text._ZN8supercap13PIDController4initEffffff)
+    [Anonymous Symbol]                       0x08007dec   Section        0  pid_controller.o(.text._ZN8supercap13PIDController5resetEv)
+    [Anonymous Symbol]                       0x08007dfc   Section        0  pid_controller.o(.text._ZN8supercap13PIDController7computeEff)
+    [Anonymous Symbol]                       0x08007e7c   Section        0  debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv)
+    [Anonymous Symbol]                       0x08007ea0   Section        0  debug_interface.o(.text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE)
+    [Anonymous Symbol]                       0x08007f2c   Section        0  buckboost.o(.text._ZN8supercap18BuckBoostConverter6updateEf)
+    [Anonymous Symbol]                       0x08008070   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x08008118   Section        0  app_init.o(.text.super_cap_app_init)
+    $v0                                      0x08008124   Number         0  d2f.o(x$fpl$d2f)
+    x$fpl$d2f                                0x08008124   Section       98  d2f.o(x$fpl$d2f)
+    $v0                                      0x08008188   Number         0  daddsub_clz.o(x$fpl$dadd)
+    x$fpl$dadd                               0x08008188   Section      336  daddsub_clz.o(x$fpl$dadd)
+    _dadd1                                   0x08008199   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    $v0                                      0x080082d8   Number         0  dmul.o(x$fpl$dmul)
+    x$fpl$dmul                               0x080082d8   Section      340  dmul.o(x$fpl$dmul)
+    $v0                                      0x0800842c   Number         0  dnaninf.o(x$fpl$dnaninf)
+    x$fpl$dnaninf                            0x0800842c   Section      156  dnaninf.o(x$fpl$dnaninf)
+    $v0                                      0x080084c8   Number         0  dretinf.o(x$fpl$dretinf)
+    x$fpl$dretinf                            0x080084c8   Section       12  dretinf.o(x$fpl$dretinf)
+    $v0                                      0x080084d4   Number         0  daddsub_clz.o(x$fpl$dsub)
+    x$fpl$dsub                               0x080084d4   Section      476  daddsub_clz.o(x$fpl$dsub)
+    _dsub1                                   0x080084e5   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    $v0                                      0x080086b0   Number         0  f2d.o(x$fpl$f2d)
+    x$fpl$f2d                                0x080086b0   Section       86  f2d.o(x$fpl$f2d)
+    $v0                                      0x08008706   Number         0  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fnaninf                            0x08008706   Section      140  fnaninf.o(x$fpl$fnaninf)
+    $v0                                      0x08008792   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08008792   Section       26  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x080087ac   Number         0  fretinf.o(x$fpl$fretinf)
+    x$fpl$fretinf                            0x080087ac   Section       10  fretinf.o(x$fpl$fretinf)
+    x$fpl$usenofp                            0x080087b6   Section        0  usenofp.o(x$fpl$usenofp)
+    DLCtoBytes                               0x080087e6   Data          16  stm32g4xx_hal_fdcan.o(.rodata.cst16)
+    [Anonymous Symbol]                       0x080087e6   Section        0  stm32g4xx_hal_fdcan.o(.rodata.cst16)
+    .Lswitch.table.UART_SetConfig.5          0x080087f8   Data          16  stm32g4xx_hal_uart.o(.rodata.cst16)
+    UARTEx_SetNbDataToProcess.numerator      0x08008808   Data           8  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
+    [Anonymous Symbol]                       0x08008808   Section        0  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
+    UARTEx_SetNbDataToProcess.denominator    0x08008810   Data           8  stm32g4xx_hal_uart_ex.o(.rodata.cst8)
     .L_MergedGlobals                         0x20000000   Data           8  stm32g4xx_hal.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x20000000   Section        0  stm32g4xx_hal.o(.data..L_MergedGlobals)
-    .bss                                     0x20000188   Section       96  libspace.o(.bss)
-    .L_MergedGlobals                         0x200001e8   Data         104  adc.o(.bss..L_MergedGlobals)
-    HAL_RCC_ADC12_CLK_ENABLED                0x200001e8   Data           4  adc.o(.bss..L_MergedGlobals)
-    [Anonymous Symbol]                       0x200001e8   Section        0  adc.o(.bss..L_MergedGlobals)
-    HAL_RCC_ADC345_CLK_ENABLED               0x200001ec   Data           4  adc.o(.bss..L_MergedGlobals)
-    supercap::tx_data                        0x2000026c   Data           8  super_cap_comm.o(.bss._ZN8supercapL7tx_dataE)
-    [Anonymous Symbol]                       0x2000026c   Section        0  super_cap_comm.o(.bss._ZN8supercapL7tx_dataE)
-    supercap::rx_header                      0x20000274   Data          40  super_cap_comm.o(.bss._ZN8supercapL9rx_headerE)
-    [Anonymous Symbol]                       0x20000274   Section        0  super_cap_comm.o(.bss._ZN8supercapL9rx_headerE)
-    Heap_Mem                                 0x20000b78   Data         512  startup_stm32g474xx.o(HEAP)
-    HEAP                                     0x20000b78   Section      512  startup_stm32g474xx.o(HEAP)
-    Stack_Mem                                0x20000d78   Data        1024  startup_stm32g474xx.o(STACK)
-    STACK                                    0x20000d78   Section     1024  startup_stm32g474xx.o(STACK)
-    __initial_sp                             0x20001178   Data           0  startup_stm32g474xx.o(STACK)
+    .bss                                     0x200001b8   Section       96  libspace.o(.bss)
+    .L_MergedGlobals                         0x20000218   Data         104  adc.o(.bss..L_MergedGlobals)
+    HAL_RCC_ADC12_CLK_ENABLED                0x20000218   Data           4  adc.o(.bss..L_MergedGlobals)
+    [Anonymous Symbol]                       0x20000218   Section        0  adc.o(.bss..L_MergedGlobals)
+    HAL_RCC_ADC345_CLK_ENABLED               0x2000021c   Data           4  adc.o(.bss..L_MergedGlobals)
+    supercap::tx_data                        0x2000029c   Data           8  super_cap_comm.o(.bss._ZN8supercapL7tx_dataE)
+    [Anonymous Symbol]                       0x2000029c   Section        0  super_cap_comm.o(.bss._ZN8supercapL7tx_dataE)
+    supercap::rx_header                      0x200002a4   Data          40  super_cap_comm.o(.bss._ZN8supercapL9rx_headerE)
+    [Anonymous Symbol]                       0x200002a4   Section        0  super_cap_comm.o(.bss._ZN8supercapL9rx_headerE)
+    Heap_Mem                                 0x20000bf0   Data         512  startup_stm32g474xx.o(HEAP)
+    HEAP                                     0x20000bf0   Section      512  startup_stm32g474xx.o(HEAP)
+    Stack_Mem                                0x20000df0   Data        1024  startup_stm32g474xx.o(STACK)
+    STACK                                    0x20000df0   Section     1024  startup_stm32g474xx.o(STACK)
+    __initial_sp                             0x200011f0   Data           0  startup_stm32g474xx.o(STACK)
 
     Global Symbols
 
@@ -4073,124 +4094,140 @@ Image Symbol Table
     supercap::AdcSampler::update()           0x08006941   Thumb Code   348  adc_sampler.o(.text._ZN8supercap10AdcSampler6updateEv)
     supercap::AdcSampler::startDMA()         0x08006aad   Thumb Code   152  adc_sampler.o(.text._ZN8supercap10AdcSampler8startDMAEv)
     supercap::AdcSampler::calibrate(unsigned short) 0x08006b49   Thumb Code   392  adc_sampler.o(.text._ZN8supercap10AdcSampler9calibrateEt)
-    supercap::ControlTask::checkProtection() 0x08006d71   Thumb Code   384  control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv)
-    supercap::ControlTask::computeControlLoop() 0x08006ef9   Thumb Code  1344  control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv)
-    supercap::ControlTask::init()            0x0800746d   Thumb Code   228  control_task.o(.text._ZN8supercap11ControlTask4initEv)
-    supercap::ControlTask::onTim2()          0x08007575   Thumb Code   244  control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev)
-    supercap::ControlTask::debugSync()       0x08007675   Thumb Code   864  control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv)
-    supercap::SuperCapComm::errorStatusCallback(FDCAN_HandleTypeDef*, unsigned int) 0x080079d5   Thumb Code   148  super_cap_comm.o(.text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj)
-    supercap::SuperCapComm::init()           0x08007a69   Thumb Code   104  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4initEv)
-    supercap::SuperCapComm::send()           0x08007ad1   Thumb Code   252  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4sendEv)
-    supercap::PIDController::init(float, float, float, float, float, float) 0x08007bd5   Thumb Code    34  pid_controller.o(.text._ZN8supercap13PIDController4initEffffff)
-    supercap::PIDController::reset()         0x08007bf9   Thumb Code    14  pid_controller.o(.text._ZN8supercap13PIDController5resetEv)
-    supercap::PIDController::compute(float, float) 0x08007c09   Thumb Code   126  pid_controller.o(.text._ZN8supercap13PIDController7computeEff)
-    supercap::DebugInterface::send()         0x08007c89   Thumb Code    16  debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv)
-    supercap::DebugInterface::update(supercap::AdcSampler const&, supercap::ControlTask const&, supercap::SuperCapComm const&) 0x08007c99   Thumb Code   136  debug_interface.o(.text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE)
-    supercap::BuckBoostConverter::update(float) 0x08007d25   Thumb Code   304  buckboost.o(.text._ZN8supercap18BuckBoostConverter6updateEf)
-    main                                     0x08007e69   Thumb Code   166  main.o(.text.main)
-    super_cap_app_init                       0x08007f11   Thumb Code    12  app_init.o(.text.super_cap_app_init)
-    __aeabi_d2f                              0x08007f1d   Thumb Code     0  d2f.o(x$fpl$d2f)
-    _d2f                                     0x08007f1d   Thumb Code    98  d2f.o(x$fpl$d2f)
-    __aeabi_dadd                             0x08007f81   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
-    _dadd                                    0x08007f81   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
-    __aeabi_dmul                             0x080080d1   Thumb Code     0  dmul.o(x$fpl$dmul)
-    _dmul                                    0x080080d1   Thumb Code   332  dmul.o(x$fpl$dmul)
-    __fpl_dnaninf                            0x08008225   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
-    __fpl_dretinf                            0x080082c1   Thumb Code    12  dretinf.o(x$fpl$dretinf)
-    __aeabi_dsub                             0x080082cd   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
-    _dsub                                    0x080082cd   Thumb Code   472  daddsub_clz.o(x$fpl$dsub)
-    __aeabi_f2d                              0x080084a9   Thumb Code     0  f2d.o(x$fpl$f2d)
-    _f2d                                     0x080084a9   Thumb Code    86  f2d.o(x$fpl$f2d)
-    __fpl_fnaninf                            0x080084ff   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    _fp_init                                 0x0800858b   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x080085a3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x080085a3   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fpl_fretinf                            0x080085a5   Thumb Code    10  fretinf.o(x$fpl$fretinf)
-    AHBPrescTable                            0x080085ae   Data          16  system_stm32g4xx.o(.rodata.AHBPrescTable)
-    __I$use$fp                               0x080085ae   Number         0  usenofp.o(x$fpl$usenofp)
-    APBPrescTable                            0x080085be   Data           8  system_stm32g4xx.o(.rodata.APBPrescTable)
-    UARTPrescTable                           0x080085c6   Data          24  stm32g4xx_hal_uart.o(.rodata.UARTPrescTable)
-    Region$$Table$$Base                      0x08008610   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08008630   Number         0  anon$$obj.o(Region$$Table)
+    supercap::ControlTask::checkProtection() 0x08006d71   Thumb Code   356  control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv)
+    supercap::ControlTask::computeControlLoop() 0x08006ed9   Thumb Code  1580  control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv)
+    supercap::ControlTask::init()            0x08007531   Thumb Code   264  control_task.o(.text._ZN8supercap11ControlTask4initEv)
+    supercap::ControlTask::onTim2()          0x0800765d   Thumb Code   268  control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev)
+    supercap::ControlTask::debugSync()       0x08007775   Thumb Code  1104  control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv)
+    supercap::SuperCapComm::errorStatusCallback(FDCAN_HandleTypeDef*, unsigned int) 0x08007bc9   Thumb Code   148  super_cap_comm.o(.text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj)
+    supercap::SuperCapComm::init()           0x08007c5d   Thumb Code   104  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4initEv)
+    supercap::SuperCapComm::send()           0x08007cc5   Thumb Code   252  super_cap_comm.o(.text._ZN8supercap12SuperCapComm4sendEv)
+    supercap::PIDController::init(float, float, float, float, float, float) 0x08007dc9   Thumb Code    34  pid_controller.o(.text._ZN8supercap13PIDController4initEffffff)
+    supercap::PIDController::reset()         0x08007ded   Thumb Code    14  pid_controller.o(.text._ZN8supercap13PIDController5resetEv)
+    supercap::PIDController::compute(float, float) 0x08007dfd   Thumb Code   126  pid_controller.o(.text._ZN8supercap13PIDController7computeEff)
+    supercap::DebugInterface::send()         0x08007e7d   Thumb Code    34  debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv)
+    supercap::DebugInterface::update(supercap::AdcSampler const&, supercap::ControlTask const&, supercap::SuperCapComm const&) 0x08007ea1   Thumb Code   136  debug_interface.o(.text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE)
+    supercap::BuckBoostConverter::update(float) 0x08007f2d   Thumb Code   304  buckboost.o(.text._ZN8supercap18BuckBoostConverter6updateEf)
+    main                                     0x08008071   Thumb Code   166  main.o(.text.main)
+    super_cap_app_init                       0x08008119   Thumb Code    12  app_init.o(.text.super_cap_app_init)
+    __aeabi_d2f                              0x08008125   Thumb Code     0  d2f.o(x$fpl$d2f)
+    _d2f                                     0x08008125   Thumb Code    98  d2f.o(x$fpl$d2f)
+    __aeabi_dadd                             0x08008189   Thumb Code     0  daddsub_clz.o(x$fpl$dadd)
+    _dadd                                    0x08008189   Thumb Code   332  daddsub_clz.o(x$fpl$dadd)
+    __aeabi_dmul                             0x080082d9   Thumb Code     0  dmul.o(x$fpl$dmul)
+    _dmul                                    0x080082d9   Thumb Code   332  dmul.o(x$fpl$dmul)
+    __fpl_dnaninf                            0x0800842d   Thumb Code   156  dnaninf.o(x$fpl$dnaninf)
+    __fpl_dretinf                            0x080084c9   Thumb Code    12  dretinf.o(x$fpl$dretinf)
+    __aeabi_dsub                             0x080084d5   Thumb Code     0  daddsub_clz.o(x$fpl$dsub)
+    _dsub                                    0x080084d5   Thumb Code   472  daddsub_clz.o(x$fpl$dsub)
+    __aeabi_f2d                              0x080086b1   Thumb Code     0  f2d.o(x$fpl$f2d)
+    _f2d                                     0x080086b1   Thumb Code    86  f2d.o(x$fpl$f2d)
+    __fpl_fnaninf                            0x08008707   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    _fp_init                                 0x08008793   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x080087ab   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x080087ab   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fpl_fretinf                            0x080087ad   Thumb Code    10  fretinf.o(x$fpl$fretinf)
+    AHBPrescTable                            0x080087b6   Data          16  system_stm32g4xx.o(.rodata.AHBPrescTable)
+    __I$use$fp                               0x080087b6   Number         0  usenofp.o(x$fpl$usenofp)
+    APBPrescTable                            0x080087c6   Data           8  system_stm32g4xx.o(.rodata.APBPrescTable)
+    UARTPrescTable                           0x080087ce   Data          24  stm32g4xx_hal_uart.o(.rodata.UARTPrescTable)
+    Region$$Table$$Base                      0x08008818   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08008838   Number         0  anon$$obj.o(Region$$Table)
     uwTickPrio                               0x20000000   Data           4  stm32g4xx_hal.o(.data..L_MergedGlobals)
     uwTickFreq                               0x20000004   Data           4  stm32g4xx_hal.o(.data..L_MergedGlobals)
     SystemCoreClock                          0x20000008   Data           4  system_stm32g4xx.o(.data.SystemCoreClock)
-    supercap::g_control_task                 0x2000000c   Data         376  global_instances.o(.data._ZN8supercap14g_control_taskE)
-    __libspace_start                         0x20000188   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x200001e8   Data           0  libspace.o(.bss)
-    hdma_adc1                                0x200001f0   Data          96  adc.o(.bss..L_MergedGlobals)
-    supercap::g_super_cap_comm               0x20000250   Data          28  global_instances.o(.bss._ZN8supercap16g_super_cap_commE)
-    g_dbg_battery_power                      0x2000029c   Data           4  debug_vars.o(.bss.g_dbg_battery_power)
-    g_dbg_boost_duty                         0x200002a0   Data           4  debug_vars.o(.bss.g_dbg_boost_duty)
-    g_dbg_buck_duty                          0x200002a4   Data           4  debug_vars.o(.bss.g_dbg_buck_duty)
-    g_dbg_bus_power_target                   0x200002a8   Data           4  debug_vars.o(.bss.g_dbg_bus_power_target)
-    g_dbg_busvloop_err                       0x200002ac   Data           8  debug_vars.o(.bss.g_dbg_busvloop_err)
-    g_dbg_busvloop_iout                      0x200002b4   Data           4  debug_vars.o(.bss.g_dbg_busvloop_iout)
-    g_dbg_busvloop_ki                        0x200002b8   Data           4  debug_vars.o(.bss.g_dbg_busvloop_ki)
-    g_dbg_busvloop_kp                        0x200002bc   Data           4  debug_vars.o(.bss.g_dbg_busvloop_kp)
-    g_dbg_busvloop_out                       0x200002c0   Data           4  debug_vars.o(.bss.g_dbg_busvloop_out)
-    g_dbg_busvloop_pout                      0x200002c4   Data           4  debug_vars.o(.bss.g_dbg_busvloop_pout)
-    g_dbg_can_disable_cnt                    0x200002c8   Data           4  debug_vars.o(.bss.g_dbg_can_disable_cnt)
-    g_dbg_can_disable_flag                   0x200002cc   Data           1  debug_vars.o(.bss.g_dbg_can_disable_flag)
-    g_dbg_can_div_cnt                        0x200002ce   Data           2  debug_vars.o(.bss.g_dbg_can_div_cnt)
-    g_dbg_can_last_tick                      0x200002d0   Data           4  debug_vars.o(.bss.g_dbg_can_last_tick)
-    g_dbg_cap_v_max                          0x200002d4   Data           4  debug_vars.o(.bss.g_dbg_cap_v_max)
-    g_dbg_ccap                               0x200002d8   Data           4  debug_vars.o(.bss.g_dbg_ccap)
-    g_dbg_cin                                0x200002dc   Data           4  debug_vars.o(.bss.g_dbg_cin)
-    g_dbg_cloop_ref                          0x200002e0   Data           4  debug_vars.o(.bss.g_dbg_cloop_ref)
-    g_dbg_cout                               0x200002e4   Data           4  debug_vars.o(.bss.g_dbg_cout)
-    g_dbg_ffd_ratio                          0x200002e8   Data           4  debug_vars.o(.bss.g_dbg_ffd_ratio)
-    g_dbg_ploop_err                          0x200002ec   Data           8  debug_vars.o(.bss.g_dbg_ploop_err)
-    g_dbg_ploop_iout                         0x200002f4   Data           4  debug_vars.o(.bss.g_dbg_ploop_iout)
-    g_dbg_ploop_ki                           0x200002f8   Data           4  debug_vars.o(.bss.g_dbg_ploop_ki)
-    g_dbg_ploop_kp                           0x200002fc   Data           4  debug_vars.o(.bss.g_dbg_ploop_kp)
-    g_dbg_ploop_out                          0x20000300   Data           4  debug_vars.o(.bss.g_dbg_ploop_out)
-    g_dbg_ploop_pout                         0x20000304   Data           4  debug_vars.o(.bss.g_dbg_ploop_pout)
-    g_dbg_ploop_ref                          0x20000308   Data           4  debug_vars.o(.bss.g_dbg_ploop_ref)
-    g_dbg_power_set                          0x2000030c   Data           4  debug_vars.o(.bss.g_dbg_power_set)
-    g_dbg_power_start_tick                   0x20000310   Data           2  debug_vars.o(.bss.g_dbg_power_start_tick)
-    g_dbg_raw_ccap                           0x20000312   Data          16  debug_vars.o(.bss.g_dbg_raw_ccap)
-    g_dbg_raw_cin                            0x20000322   Data          16  debug_vars.o(.bss.g_dbg_raw_cin)
-    g_dbg_raw_cout                           0x20000332   Data          16  debug_vars.o(.bss.g_dbg_raw_cout)
-    g_dbg_raw_vcap                           0x20000342   Data          16  debug_vars.o(.bss.g_dbg_raw_vcap)
-    g_dbg_raw_vin                            0x20000352   Data          16  debug_vars.o(.bss.g_dbg_raw_vin)
-    g_dbg_restart_flag                       0x20000362   Data           1  debug_vars.o(.bss.g_dbg_restart_flag)
-    g_dbg_startup_charging                   0x20000363   Data           1  debug_vars.o(.bss.g_dbg_startup_charging)
-    g_dbg_state                              0x20000364   Data           1  debug_vars.o(.bss.g_dbg_state)
-    g_dbg_vcap                               0x20000368   Data           4  debug_vars.o(.bss.g_dbg_vcap)
-    g_dbg_vcap_last                          0x2000036c   Data           4  debug_vars.o(.bss.g_dbg_vcap_last)
-    g_dbg_vcap_reg_target                    0x20000370   Data           4  debug_vars.o(.bss.g_dbg_vcap_reg_target)
-    g_dbg_vin                                0x20000374   Data           4  debug_vars.o(.bss.g_dbg_vin)
-    g_dbg_vin_last                           0x20000378   Data           4  debug_vars.o(.bss.g_dbg_vin_last)
-    g_dbg_vloop_err                          0x2000037c   Data           8  debug_vars.o(.bss.g_dbg_vloop_err)
-    g_dbg_vloop_iout                         0x20000384   Data           4  debug_vars.o(.bss.g_dbg_vloop_iout)
-    g_dbg_vloop_ki                           0x20000388   Data           4  debug_vars.o(.bss.g_dbg_vloop_ki)
-    g_dbg_vloop_kp                           0x2000038c   Data           4  debug_vars.o(.bss.g_dbg_vloop_kp)
-    g_dbg_vloop_out                          0x20000390   Data           4  debug_vars.o(.bss.g_dbg_vloop_out)
-    g_dbg_vloop_pout                         0x20000394   Data           4  debug_vars.o(.bss.g_dbg_vloop_pout)
-    g_dbg_vloop_ref                          0x20000398   Data           4  debug_vars.o(.bss.g_dbg_vloop_ref)
-    g_dbg_volt_ratio                         0x2000039c   Data           4  debug_vars.o(.bss.g_dbg_volt_ratio)
-    g_dbg_vout                               0x200003a0   Data           4  debug_vars.o(.bss.g_dbg_vout)
-    g_dbg_work_tick                          0x200003a4   Data           4  debug_vars.o(.bss.g_dbg_work_tick)
-    hadc1                                    0x200003a8   Data         108  adc.o(.bss.hadc1)
-    hadc2                                    0x20000414   Data         108  adc.o(.bss.hadc2)
-    hadc3                                    0x20000480   Data         108  adc.o(.bss.hadc3)
-    hadc4                                    0x200004ec   Data         108  adc.o(.bss.hadc4)
-    hadc5                                    0x20000558   Data         108  adc.o(.bss.hadc5)
-    hdma_adc2                                0x200005c4   Data          96  adc.o(.bss.hdma_adc2)
-    hdma_adc3                                0x20000624   Data          96  adc.o(.bss.hdma_adc3)
-    hdma_adc4                                0x20000684   Data          96  adc.o(.bss.hdma_adc4)
-    hdma_adc5                                0x200006e4   Data          96  adc.o(.bss.hdma_adc5)
-    hdma_usart1_rx                           0x20000744   Data          96  usart.o(.bss.hdma_usart1_rx)
-    hdma_usart1_tx                           0x200007a4   Data          96  usart.o(.bss.hdma_usart1_tx)
-    hfdcan2                                  0x20000804   Data         100  fdcan.o(.bss.hfdcan2)
-    hhrtim1                                  0x20000868   Data         252  hrtim.o(.bss.hhrtim1)
-    htim2                                    0x20000964   Data          76  tim.o(.bss.htim2)
-    htim3                                    0x200009b0   Data          76  tim.o(.bss.htim3)
-    htim4                                    0x200009fc   Data          76  tim.o(.bss.htim4)
-    huart1                                   0x20000a48   Data         148  usart.o(.bss.huart1)
-    huart4                                   0x20000adc   Data         148  usart.o(.bss.huart4)
-    uwTick                                   0x20000b70   Data           4  stm32g4xx_hal.o(.bss.uwTick)
+    supercap::g_control_task                 0x2000000c   Data         428  global_instances.o(.data._ZN8supercap14g_control_taskE)
+    __libspace_start                         0x200001b8   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20000218   Data           0  libspace.o(.bss)
+    hdma_adc1                                0x20000220   Data          96  adc.o(.bss..L_MergedGlobals)
+    supercap::g_super_cap_comm               0x20000280   Data          28  global_instances.o(.bss._ZN8supercap16g_super_cap_commE)
+    g_dbg_battery_power                      0x200002cc   Data           4  debug_vars.o(.bss.g_dbg_battery_power)
+    g_dbg_boost_duty                         0x200002d0   Data           4  debug_vars.o(.bss.g_dbg_boost_duty)
+    g_dbg_buck_duty                          0x200002d4   Data           4  debug_vars.o(.bss.g_dbg_buck_duty)
+    g_dbg_bus_power_target                   0x200002d8   Data           4  debug_vars.o(.bss.g_dbg_bus_power_target)
+    g_dbg_bus_vloop_out                      0x200002dc   Data           4  debug_vars.o(.bss.g_dbg_bus_vloop_out)
+    g_dbg_busvloop_err                       0x200002e0   Data           8  debug_vars.o(.bss.g_dbg_busvloop_err)
+    g_dbg_busvloop_iout                      0x200002e8   Data           4  debug_vars.o(.bss.g_dbg_busvloop_iout)
+    g_dbg_busvloop_ki                        0x200002ec   Data           4  debug_vars.o(.bss.g_dbg_busvloop_ki)
+    g_dbg_busvloop_kp                        0x200002f0   Data           4  debug_vars.o(.bss.g_dbg_busvloop_kp)
+    g_dbg_busvloop_out                       0x200002f4   Data           4  debug_vars.o(.bss.g_dbg_busvloop_out)
+    g_dbg_busvloop_pout                      0x200002f8   Data           4  debug_vars.o(.bss.g_dbg_busvloop_pout)
+    g_dbg_can_charge_cap                     0x200002fc   Data           1  debug_vars.o(.bss.g_dbg_can_charge_cap)
+    g_dbg_can_disable_cnt                    0x20000300   Data           4  debug_vars.o(.bss.g_dbg_can_disable_cnt)
+    g_dbg_can_disable_flag                   0x20000304   Data           1  debug_vars.o(.bss.g_dbg_can_disable_flag)
+    g_dbg_can_div_cnt                        0x20000306   Data           2  debug_vars.o(.bss.g_dbg_can_div_cnt)
+    g_dbg_can_last_tick                      0x20000308   Data           4  debug_vars.o(.bss.g_dbg_can_last_tick)
+    g_dbg_cap_v_max                          0x2000030c   Data           4  debug_vars.o(.bss.g_dbg_cap_v_max)
+    g_dbg_ccap                               0x20000310   Data           4  debug_vars.o(.bss.g_dbg_ccap)
+    g_dbg_cin                                0x20000314   Data           4  debug_vars.o(.bss.g_dbg_cin)
+    g_dbg_cloop_ref                          0x20000318   Data           4  debug_vars.o(.bss.g_dbg_cloop_ref)
+    g_dbg_cout                               0x2000031c   Data           4  debug_vars.o(.bss.g_dbg_cout)
+    g_dbg_ffd_ratio                          0x20000320   Data           4  debug_vars.o(.bss.g_dbg_ffd_ratio)
+    g_dbg_high_vloop_err                     0x20000324   Data           8  debug_vars.o(.bss.g_dbg_high_vloop_err)
+    g_dbg_high_vloop_iout                    0x2000032c   Data           4  debug_vars.o(.bss.g_dbg_high_vloop_iout)
+    g_dbg_high_vloop_ki                      0x20000330   Data           4  debug_vars.o(.bss.g_dbg_high_vloop_ki)
+    g_dbg_high_vloop_kp                      0x20000334   Data           4  debug_vars.o(.bss.g_dbg_high_vloop_kp)
+    g_dbg_high_vloop_out                     0x20000338   Data           4  debug_vars.o(.bss.g_dbg_high_vloop_out)
+    g_dbg_high_vloop_pout                    0x2000033c   Data           4  debug_vars.o(.bss.g_dbg_high_vloop_pout)
+    g_dbg_load_power_est                     0x20000340   Data           4  debug_vars.o(.bss.g_dbg_load_power_est)
+    g_dbg_low_clamp_active                   0x20000344   Data           1  debug_vars.o(.bss.g_dbg_low_clamp_active)
+    g_dbg_low_vloop_err                      0x20000348   Data           8  debug_vars.o(.bss.g_dbg_low_vloop_err)
+    g_dbg_low_vloop_iout                     0x20000350   Data           4  debug_vars.o(.bss.g_dbg_low_vloop_iout)
+    g_dbg_low_vloop_ki                       0x20000354   Data           4  debug_vars.o(.bss.g_dbg_low_vloop_ki)
+    g_dbg_low_vloop_kp                       0x20000358   Data           4  debug_vars.o(.bss.g_dbg_low_vloop_kp)
+    g_dbg_low_vloop_out                      0x2000035c   Data           4  debug_vars.o(.bss.g_dbg_low_vloop_out)
+    g_dbg_low_vloop_pout                     0x20000360   Data           4  debug_vars.o(.bss.g_dbg_low_vloop_pout)
+    g_dbg_pcap                               0x20000364   Data           4  debug_vars.o(.bss.g_dbg_pcap)
+    g_dbg_ploop_err                          0x20000368   Data           8  debug_vars.o(.bss.g_dbg_ploop_err)
+    g_dbg_ploop_iout                         0x20000370   Data           4  debug_vars.o(.bss.g_dbg_ploop_iout)
+    g_dbg_ploop_ki                           0x20000374   Data           4  debug_vars.o(.bss.g_dbg_ploop_ki)
+    g_dbg_ploop_kp                           0x20000378   Data           4  debug_vars.o(.bss.g_dbg_ploop_kp)
+    g_dbg_ploop_out                          0x2000037c   Data           4  debug_vars.o(.bss.g_dbg_ploop_out)
+    g_dbg_ploop_pout                         0x20000380   Data           4  debug_vars.o(.bss.g_dbg_ploop_pout)
+    g_dbg_ploop_ref                          0x20000384   Data           4  debug_vars.o(.bss.g_dbg_ploop_ref)
+    g_dbg_power_set                          0x20000388   Data           4  debug_vars.o(.bss.g_dbg_power_set)
+    g_dbg_power_start_tick                   0x2000038c   Data           2  debug_vars.o(.bss.g_dbg_power_start_tick)
+    g_dbg_raw_ccap                           0x2000038e   Data          16  debug_vars.o(.bss.g_dbg_raw_ccap)
+    g_dbg_raw_cin                            0x2000039e   Data          16  debug_vars.o(.bss.g_dbg_raw_cin)
+    g_dbg_raw_cout                           0x200003ae   Data          16  debug_vars.o(.bss.g_dbg_raw_cout)
+    g_dbg_raw_vcap                           0x200003be   Data          16  debug_vars.o(.bss.g_dbg_raw_vcap)
+    g_dbg_raw_vin                            0x200003ce   Data          16  debug_vars.o(.bss.g_dbg_raw_vin)
+    g_dbg_restart_flag                       0x200003de   Data           1  debug_vars.o(.bss.g_dbg_restart_flag)
+    g_dbg_state                              0x200003df   Data           1  debug_vars.o(.bss.g_dbg_state)
+    g_dbg_vcap                               0x200003e0   Data           4  debug_vars.o(.bss.g_dbg_vcap)
+    g_dbg_vcap_last                          0x200003e4   Data           4  debug_vars.o(.bss.g_dbg_vcap_last)
+    g_dbg_vcap_reg_target                    0x200003e8   Data           4  debug_vars.o(.bss.g_dbg_vcap_reg_target)
+    g_dbg_vin                                0x200003ec   Data           4  debug_vars.o(.bss.g_dbg_vin)
+    g_dbg_vin_last                           0x200003f0   Data           4  debug_vars.o(.bss.g_dbg_vin_last)
+    g_dbg_vloop_err                          0x200003f4   Data           8  debug_vars.o(.bss.g_dbg_vloop_err)
+    g_dbg_vloop_iout                         0x200003fc   Data           4  debug_vars.o(.bss.g_dbg_vloop_iout)
+    g_dbg_vloop_ki                           0x20000400   Data           4  debug_vars.o(.bss.g_dbg_vloop_ki)
+    g_dbg_vloop_kp                           0x20000404   Data           4  debug_vars.o(.bss.g_dbg_vloop_kp)
+    g_dbg_vloop_out                          0x20000408   Data           4  debug_vars.o(.bss.g_dbg_vloop_out)
+    g_dbg_vloop_pout                         0x2000040c   Data           4  debug_vars.o(.bss.g_dbg_vloop_pout)
+    g_dbg_vloop_ref                          0x20000410   Data           4  debug_vars.o(.bss.g_dbg_vloop_ref)
+    g_dbg_volt_ratio                         0x20000414   Data           4  debug_vars.o(.bss.g_dbg_volt_ratio)
+    g_dbg_vout                               0x20000418   Data           4  debug_vars.o(.bss.g_dbg_vout)
+    g_dbg_work_tick                          0x2000041c   Data           4  debug_vars.o(.bss.g_dbg_work_tick)
+    hadc1                                    0x20000420   Data         108  adc.o(.bss.hadc1)
+    hadc2                                    0x2000048c   Data         108  adc.o(.bss.hadc2)
+    hadc3                                    0x200004f8   Data         108  adc.o(.bss.hadc3)
+    hadc4                                    0x20000564   Data         108  adc.o(.bss.hadc4)
+    hadc5                                    0x200005d0   Data         108  adc.o(.bss.hadc5)
+    hdma_adc2                                0x2000063c   Data          96  adc.o(.bss.hdma_adc2)
+    hdma_adc3                                0x2000069c   Data          96  adc.o(.bss.hdma_adc3)
+    hdma_adc4                                0x200006fc   Data          96  adc.o(.bss.hdma_adc4)
+    hdma_adc5                                0x2000075c   Data          96  adc.o(.bss.hdma_adc5)
+    hdma_usart1_rx                           0x200007bc   Data          96  usart.o(.bss.hdma_usart1_rx)
+    hdma_usart1_tx                           0x2000081c   Data          96  usart.o(.bss.hdma_usart1_tx)
+    hfdcan2                                  0x2000087c   Data         100  fdcan.o(.bss.hfdcan2)
+    hhrtim1                                  0x200008e0   Data         252  hrtim.o(.bss.hhrtim1)
+    htim2                                    0x200009dc   Data          76  tim.o(.bss.htim2)
+    htim3                                    0x20000a28   Data          76  tim.o(.bss.htim3)
+    htim4                                    0x20000a74   Data          76  tim.o(.bss.htim4)
+    huart1                                   0x20000ac0   Data         148  usart.o(.bss.huart1)
+    huart4                                   0x20000b54   Data         148  usart.o(.bss.huart4)
+    uwTick                                   0x20000be8   Data           4  stm32g4xx_hal.o(.bss.uwTick)
 
 
 
@@ -4200,73 +4237,73 @@ Memory Map of the image
 
   Image Entry point : 0x080001d9
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000087b8, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00008648])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000089f0, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00008850])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00008630, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00008838, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x000001d8   Data   RO            3    RESET               startup_stm32g474xx.o
-    0x080001d8   0x080001d8   0x00000008   Code   RO         2026  * !!!main             c_w.l(__main.o)
-    0x080001e0   0x080001e0   0x0000005c   Code   RO         2228    !!!scatter          c_w.l(__scatter.o)
-    0x0800023c   0x0800023c   0x0000003a   Code   RO         2226    !!dczerorl          c_w.l(__dczerorl.o)
+    0x080001d8   0x080001d8   0x00000008   Code   RO         2044  * !!!main             c_w.l(__main.o)
+    0x080001e0   0x080001e0   0x0000005c   Code   RO         2246    !!!scatter          c_w.l(__scatter.o)
+    0x0800023c   0x0800023c   0x0000003a   Code   RO         2244    !!dczerorl          c_w.l(__dczerorl.o)
     0x08000276   0x08000276   0x00000002   PAD
-    0x08000278   0x08000278   0x00000002   Code   RO         2229    !!handler_null      c_w.l(__scatter.o)
+    0x08000278   0x08000278   0x00000002   Code   RO         2247    !!handler_null      c_w.l(__scatter.o)
     0x0800027a   0x0800027a   0x00000002   PAD
-    0x0800027c   0x0800027c   0x0000001c   Code   RO         2232    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x08000298   0x08000298   0x00000002   Code   RO         2088    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x0800029a   0x0800029a   0x00000004   Code   RO         2100    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2103    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2105    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2108    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2110    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2112    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2115    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2117    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2119    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2121    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2123    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2125    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2127    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2129    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2131    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2133    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2135    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2139    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2141    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2143    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000000   Code   RO         2145    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
-    0x0800029e   0x0800029e   0x00000002   Code   RO         2146    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
-    0x080002a0   0x080002a0   0x00000002   Code   RO         2181    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2209    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2211    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2214    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2217    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2219    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000000   Code   RO         2222    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x080002a2   0x080002a2   0x00000002   Code   RO         2223    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
-    0x080002a4   0x080002a4   0x00000000   Code   RO         2044    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
-    0x080002a4   0x080002a4   0x00000000   Code   RO         2059    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
-    0x080002a4   0x080002a4   0x00000006   Code   RO         2071    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
-    0x080002aa   0x080002aa   0x00000000   Code   RO         2061    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
-    0x080002aa   0x080002aa   0x00000004   Code   RO         2062    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
-    0x080002ae   0x080002ae   0x00000000   Code   RO         2064    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
-    0x080002ae   0x080002ae   0x00000008   Code   RO         2065    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
-    0x080002b6   0x080002b6   0x00000002   Code   RO         2092    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x080002b8   0x080002b8   0x00000000   Code   RO         2152    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x080002b8   0x080002b8   0x00000004   Code   RO         2153    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x080002bc   0x080002bc   0x00000006   Code   RO         2154    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x0800027c   0x0800027c   0x0000001c   Code   RO         2250    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x08000298   0x08000298   0x00000002   Code   RO         2106    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x0800029a   0x0800029a   0x00000004   Code   RO         2118    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2121    .ARM.Collect$$libinit$$00000004  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2123    .ARM.Collect$$libinit$$00000006  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2126    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2128    .ARM.Collect$$libinit$$0000000E  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2130    .ARM.Collect$$libinit$$00000010  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2133    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2135    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2137    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2139    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2141    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2143    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2145    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2147    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2149    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2151    .ARM.Collect$$libinit$$00000025  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2153    .ARM.Collect$$libinit$$00000027  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2157    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2159    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2161    .ARM.Collect$$libinit$$00000032  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000000   Code   RO         2163    .ARM.Collect$$libinit$$00000034  c_w.l(libinit2.o)
+    0x0800029e   0x0800029e   0x00000002   Code   RO         2164    .ARM.Collect$$libinit$$00000035  c_w.l(libinit2.o)
+    0x080002a0   0x080002a0   0x00000002   Code   RO         2199    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2227    .ARM.Collect$$libshutdown$$00000002  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2229    .ARM.Collect$$libshutdown$$00000004  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2232    .ARM.Collect$$libshutdown$$00000007  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2235    .ARM.Collect$$libshutdown$$0000000A  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2237    .ARM.Collect$$libshutdown$$0000000C  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000000   Code   RO         2240    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x080002a2   0x080002a2   0x00000002   Code   RO         2241    .ARM.Collect$$libshutdown$$00000010  c_w.l(libshutdown2.o)
+    0x080002a4   0x080002a4   0x00000000   Code   RO         2062    .ARM.Collect$$rtentry$$00000000  c_w.l(__rtentry.o)
+    0x080002a4   0x080002a4   0x00000000   Code   RO         2077    .ARM.Collect$$rtentry$$00000002  c_w.l(__rtentry2.o)
+    0x080002a4   0x080002a4   0x00000006   Code   RO         2089    .ARM.Collect$$rtentry$$00000004  c_w.l(__rtentry4.o)
+    0x080002aa   0x080002aa   0x00000000   Code   RO         2079    .ARM.Collect$$rtentry$$00000009  c_w.l(__rtentry2.o)
+    0x080002aa   0x080002aa   0x00000004   Code   RO         2080    .ARM.Collect$$rtentry$$0000000A  c_w.l(__rtentry2.o)
+    0x080002ae   0x080002ae   0x00000000   Code   RO         2082    .ARM.Collect$$rtentry$$0000000C  c_w.l(__rtentry2.o)
+    0x080002ae   0x080002ae   0x00000008   Code   RO         2083    .ARM.Collect$$rtentry$$0000000D  c_w.l(__rtentry2.o)
+    0x080002b6   0x080002b6   0x00000002   Code   RO         2110    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x080002b8   0x080002b8   0x00000000   Code   RO         2170    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x080002b8   0x080002b8   0x00000004   Code   RO         2171    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x080002bc   0x080002bc   0x00000006   Code   RO         2172    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x080002c2   0x080002c2   0x00000002   PAD
     0x080002c4   0x080002c4   0x00000040   Code   RO            4    .text               startup_stm32g474xx.o
-    0x08000304   0x08000304   0x000000f0   Code   RO         2020    .text               c_w.l(lludivv7m.o)
-    0x080003f4   0x080003f4   0x0000004e   Code   RO         2022    .text               c_w.l(rt_memclr_w.o)
-    0x08000442   0x08000442   0x00000006   Code   RO         2024    .text               c_w.l(heapauxi.o)
-    0x08000448   0x08000448   0x0000004a   Code   RO         2075    .text               c_w.l(sys_stackheap_outer.o)
-    0x08000492   0x08000492   0x00000012   Code   RO         2077    .text               c_w.l(exit.o)
-    0x080004a4   0x080004a4   0x00000008   Code   RO         2089    .text               c_w.l(libspace.o)
-    0x080004ac   0x080004ac   0x0000000c   Code   RO         2147    .text               c_w.l(sys_exit.o)
-    0x080004b8   0x080004b8   0x00000002   Code   RO         2170    .text               c_w.l(use_no_semi.o)
-    0x080004ba   0x080004ba   0x00000000   Code   RO         2172    .text               c_w.l(indicate_semi.o)
+    0x08000304   0x08000304   0x000000f0   Code   RO         2038    .text               c_w.l(lludivv7m.o)
+    0x080003f4   0x080003f4   0x0000004e   Code   RO         2040    .text               c_w.l(rt_memclr_w.o)
+    0x08000442   0x08000442   0x00000006   Code   RO         2042    .text               c_w.l(heapauxi.o)
+    0x08000448   0x08000448   0x0000004a   Code   RO         2093    .text               c_w.l(sys_stackheap_outer.o)
+    0x08000492   0x08000492   0x00000012   Code   RO         2095    .text               c_w.l(exit.o)
+    0x080004a4   0x080004a4   0x00000008   Code   RO         2107    .text               c_w.l(libspace.o)
+    0x080004ac   0x080004ac   0x0000000c   Code   RO         2165    .text               c_w.l(sys_exit.o)
+    0x080004b8   0x080004b8   0x00000002   Code   RO         2188    .text               c_w.l(use_no_semi.o)
+    0x080004ba   0x080004ba   0x00000000   Code   RO         2190    .text               c_w.l(indicate_semi.o)
     0x080004ba   0x080004ba   0x00000002   PAD
     0x080004bc   0x080004bc   0x00000062   Code   RO          233    .text.ADC_DMAConvCplt  stm32g4xx_hal_adc.o
     0x0800051e   0x0800051e   0x00000002   PAD
@@ -4430,7 +4467,7 @@ Memory Map of the image
     0x080044d6   0x080044d6   0x00000002   PAD
     0x080044d8   0x080044d8   0x00000002   Code   RO         1392    .text.HAL_TIM_PWM_PulseFinishedCallback  stm32g4xx_hal_tim.o
     0x080044da   0x080044da   0x00000002   PAD
-    0x080044dc   0x080044dc   0x000000d0   Code   RO         2000    .text.HAL_TIM_PeriodElapsedCallback  control_task.o
+    0x080044dc   0x080044dc   0x000000d0   Code   RO         2018    .text.HAL_TIM_PeriodElapsedCallback  control_task.o
     0x080045ac   0x080045ac   0x00000002   Code   RO         1396    .text.HAL_TIM_TriggerCallback  stm32g4xx_hal_tim.o
     0x080045ae   0x080045ae   0x00000002   PAD
     0x080045b0   0x080045b0   0x00000036   Code   RO         1788    .text.HAL_UARTEx_DisableFifoMode  stm32g4xx_hal_uart_ex.o
@@ -4518,137 +4555,154 @@ Memory Map of the image
     0x08006aac   0x08006aac   0x00000098   Code   RO         1850    .text._ZN8supercap10AdcSampler8startDMAEv  adc_sampler.o
     0x08006b44   0x08006b44   0x00000004   PAD
     0x08006b48   0x08006b48   0x00000228   Code   RO         1858    .text._ZN8supercap10AdcSampler9calibrateEt  adc_sampler.o
-    0x08006d70   0x08006d70   0x00000188   Code   RO         1998    .text._ZN8supercap11ControlTask15checkProtectionEv  control_task.o
-    0x08006ef8   0x08006ef8   0x00000574   Code   RO         1992    .text._ZN8supercap11ControlTask18computeControlLoopEv  control_task.o
-    0x0800746c   0x0800746c   0x00000108   Code   RO         1978    .text._ZN8supercap11ControlTask4initEv  control_task.o
-    0x08007574   0x08007574   0x00000100   Code   RO         1982    .text._ZN8supercap11ControlTask6onTim2Ev  control_task.o
-    0x08007674   0x08007674   0x00000360   Code   RO         1996    .text._ZN8supercap11ControlTask9debugSyncEv  control_task.o
-    0x080079d4   0x080079d4   0x00000094   Code   RO         1893    .text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj  super_cap_comm.o
-    0x08007a68   0x08007a68   0x00000068   Code   RO         1877    .text._ZN8supercap12SuperCapComm4initEv  super_cap_comm.o
-    0x08007ad0   0x08007ad0   0x00000104   Code   RO         1889    .text._ZN8supercap12SuperCapComm4sendEv  super_cap_comm.o
-    0x08007bd4   0x08007bd4   0x00000022   Code   RO         1838    .text._ZN8supercap13PIDController4initEffffff  pid_controller.o
-    0x08007bf6   0x08007bf6   0x00000002   PAD
-    0x08007bf8   0x08007bf8   0x0000000e   Code   RO         1836    .text._ZN8supercap13PIDController5resetEv  pid_controller.o
-    0x08007c06   0x08007c06   0x00000002   PAD
-    0x08007c08   0x08007c08   0x0000007e   Code   RO         1840    .text._ZN8supercap13PIDController7computeEff  pid_controller.o
-    0x08007c86   0x08007c86   0x00000002   PAD
-    0x08007c88   0x08007c88   0x00000010   Code   RO         1911    .text._ZN8supercap14DebugInterface4sendEv  debug_interface.o
-    0x08007c98   0x08007c98   0x0000008c   Code   RO         1909    .text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE  debug_interface.o
-    0x08007d24   0x08007d24   0x00000144   Code   RO         2010    .text._ZN8supercap18BuckBoostConverter6updateEf  buckboost.o
-    0x08007e68   0x08007e68   0x000000a6   Code   RO           11    .text.main          main.o
-    0x08007f0e   0x08007f0e   0x00000002   PAD
-    0x08007f10   0x08007f10   0x0000000c   Code   RO         1826    .text.super_cap_app_init  app_init.o
-    0x08007f1c   0x08007f1c   0x00000062   Code   RO         2028    x$fpl$d2f           fz_wm.l(d2f.o)
-    0x08007f7e   0x08007f7e   0x00000002   PAD
-    0x08007f80   0x08007f80   0x00000150   Code   RO         2030    x$fpl$dadd          fz_wm.l(daddsub_clz.o)
-    0x080080d0   0x080080d0   0x00000154   Code   RO         2040    x$fpl$dmul          fz_wm.l(dmul.o)
-    0x08008224   0x08008224   0x0000009c   Code   RO         2049    x$fpl$dnaninf       fz_wm.l(dnaninf.o)
-    0x080082c0   0x080082c0   0x0000000c   Code   RO         2051    x$fpl$dretinf       fz_wm.l(dretinf.o)
-    0x080082cc   0x080082cc   0x000001dc   Code   RO         2032    x$fpl$dsub          fz_wm.l(daddsub_clz.o)
-    0x080084a8   0x080084a8   0x00000056   Code   RO         2042    x$fpl$f2d           fz_wm.l(f2d.o)
-    0x080084fe   0x080084fe   0x0000008c   Code   RO         2053    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
-    0x0800858a   0x0800858a   0x0000001a   Code   RO         2164    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x080085a4   0x080085a4   0x0000000a   Code   RO         2055    x$fpl$fretinf       fz_wm.l(fretinf.o)
-    0x080085ae   0x080085ae   0x00000000   Code   RO         2057    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x080085ae   0x080085ae   0x00000010   Data   RO         1816    .rodata.AHBPrescTable  system_stm32g4xx.o
-    0x080085be   0x080085be   0x00000008   Data   RO         1817    .rodata.APBPrescTable  system_stm32g4xx.o
-    0x080085c6   0x080085c6   0x00000018   Data   RO         1760    .rodata.UARTPrescTable  stm32g4xx_hal_uart.o
-    0x080085de   0x080085de   0x00000010   Data   RO          971    .rodata.cst16       stm32g4xx_hal_fdcan.o
-    0x080085ee   0x080085ee   0x00000002   PAD
-    0x080085f0   0x080085f0   0x00000010   Data   RO         1761    .rodata.cst16       stm32g4xx_hal_uart.o
-    0x08008600   0x08008600   0x00000010   Data   RO         1802    .rodata.cst8        stm32g4xx_hal_uart_ex.o
-    0x08008610   0x08008610   0x00000020   Data   RO         2225    Region$$Table       anon$$obj.o
+    0x08006d70   0x08006d70   0x00000168   Code   RO         2016    .text._ZN8supercap11ControlTask15checkProtectionEv  control_task.o
+    0x08006ed8   0x08006ed8   0x00000658   Code   RO         2008    .text._ZN8supercap11ControlTask18computeControlLoopEv  control_task.o
+    0x08007530   0x08007530   0x0000012c   Code   RO         1994    .text._ZN8supercap11ControlTask4initEv  control_task.o
+    0x0800765c   0x0800765c   0x00000118   Code   RO         1998    .text._ZN8supercap11ControlTask6onTim2Ev  control_task.o
+    0x08007774   0x08007774   0x00000454   Code   RO         2012    .text._ZN8supercap11ControlTask9debugSyncEv  control_task.o
+    0x08007bc8   0x08007bc8   0x00000094   Code   RO         1893    .text._ZN8supercap12SuperCapComm19errorStatusCallbackEP19FDCAN_HandleTypeDefj  super_cap_comm.o
+    0x08007c5c   0x08007c5c   0x00000068   Code   RO         1877    .text._ZN8supercap12SuperCapComm4initEv  super_cap_comm.o
+    0x08007cc4   0x08007cc4   0x00000104   Code   RO         1889    .text._ZN8supercap12SuperCapComm4sendEv  super_cap_comm.o
+    0x08007dc8   0x08007dc8   0x00000022   Code   RO         1838    .text._ZN8supercap13PIDController4initEffffff  pid_controller.o
+    0x08007dea   0x08007dea   0x00000002   PAD
+    0x08007dec   0x08007dec   0x0000000e   Code   RO         1836    .text._ZN8supercap13PIDController5resetEv  pid_controller.o
+    0x08007dfa   0x08007dfa   0x00000002   PAD
+    0x08007dfc   0x08007dfc   0x0000007e   Code   RO         1840    .text._ZN8supercap13PIDController7computeEff  pid_controller.o
+    0x08007e7a   0x08007e7a   0x00000002   PAD
+    0x08007e7c   0x08007e7c   0x00000022   Code   RO         1911    .text._ZN8supercap14DebugInterface4sendEv  debug_interface.o
+    0x08007e9e   0x08007e9e   0x00000002   PAD
+    0x08007ea0   0x08007ea0   0x0000008c   Code   RO         1909    .text._ZN8supercap14DebugInterface6updateERKNS_10AdcSamplerERKNS_11ControlTaskERKNS_12SuperCapCommE  debug_interface.o
+    0x08007f2c   0x08007f2c   0x00000144   Code   RO         2028    .text._ZN8supercap18BuckBoostConverter6updateEf  buckboost.o
+    0x08008070   0x08008070   0x000000a6   Code   RO           11    .text.main          main.o
+    0x08008116   0x08008116   0x00000002   PAD
+    0x08008118   0x08008118   0x0000000c   Code   RO         1826    .text.super_cap_app_init  app_init.o
+    0x08008124   0x08008124   0x00000062   Code   RO         2046    x$fpl$d2f           fz_wm.l(d2f.o)
+    0x08008186   0x08008186   0x00000002   PAD
+    0x08008188   0x08008188   0x00000150   Code   RO         2048    x$fpl$dadd          fz_wm.l(daddsub_clz.o)
+    0x080082d8   0x080082d8   0x00000154   Code   RO         2058    x$fpl$dmul          fz_wm.l(dmul.o)
+    0x0800842c   0x0800842c   0x0000009c   Code   RO         2067    x$fpl$dnaninf       fz_wm.l(dnaninf.o)
+    0x080084c8   0x080084c8   0x0000000c   Code   RO         2069    x$fpl$dretinf       fz_wm.l(dretinf.o)
+    0x080084d4   0x080084d4   0x000001dc   Code   RO         2050    x$fpl$dsub          fz_wm.l(daddsub_clz.o)
+    0x080086b0   0x080086b0   0x00000056   Code   RO         2060    x$fpl$f2d           fz_wm.l(f2d.o)
+    0x08008706   0x08008706   0x0000008c   Code   RO         2071    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
+    0x08008792   0x08008792   0x0000001a   Code   RO         2182    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x080087ac   0x080087ac   0x0000000a   Code   RO         2073    x$fpl$fretinf       fz_wm.l(fretinf.o)
+    0x080087b6   0x080087b6   0x00000000   Code   RO         2075    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x080087b6   0x080087b6   0x00000010   Data   RO         1816    .rodata.AHBPrescTable  system_stm32g4xx.o
+    0x080087c6   0x080087c6   0x00000008   Data   RO         1817    .rodata.APBPrescTable  system_stm32g4xx.o
+    0x080087ce   0x080087ce   0x00000018   Data   RO         1760    .rodata.UARTPrescTable  stm32g4xx_hal_uart.o
+    0x080087e6   0x080087e6   0x00000010   Data   RO          971    .rodata.cst16       stm32g4xx_hal_fdcan.o
+    0x080087f6   0x080087f6   0x00000002   PAD
+    0x080087f8   0x080087f8   0x00000010   Data   RO         1761    .rodata.cst16       stm32g4xx_hal_uart.o
+    0x08008808   0x08008808   0x00000010   Data   RO         1802    .rodata.cst8        stm32g4xx_hal_uart_ex.o
+    0x08008818   0x08008818   0x00000020   Data   RO         2243    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08008630, Size: 0x00001178, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000018])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08008838, Size: 0x000011f0, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000018])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   COMPRESSED   0x00000008   Data   RW          413    .data..L_MergedGlobals  stm32g4xx_hal.o
     0x20000008   COMPRESSED   0x00000004   Data   RW         1815    .data.SystemCoreClock  system_stm32g4xx.o
-    0x2000000c   COMPRESSED   0x00000178   Data   RW         1871    .data._ZN8supercap14g_control_taskE  global_instances.o
-    0x20000184   COMPRESSED   0x00000004   PAD
-    0x20000188        -       0x00000060   Zero   RW         2090    .bss                c_w.l(libspace.o)
-    0x200001e8        -       0x00000068   Zero   RW           57    .bss..L_MergedGlobals  adc.o
-    0x20000250        -       0x0000001c   Zero   RW         1870    .bss._ZN8supercap16g_super_cap_commE  global_instances.o
-    0x2000026c        -       0x00000008   Zero   RW         1899    .bss._ZN8supercapL7tx_dataE  super_cap_comm.o
-    0x20000274        -       0x00000028   Zero   RW         1900    .bss._ZN8supercapL9rx_headerE  super_cap_comm.o
-    0x2000029c        -       0x00000004   Zero   RW         1971    .bss.g_dbg_battery_power  debug_vars.o
-    0x200002a0        -       0x00000004   Zero   RW         1970    .bss.g_dbg_boost_duty  debug_vars.o
-    0x200002a4        -       0x00000004   Zero   RW         1969    .bss.g_dbg_buck_duty  debug_vars.o
-    0x200002a8        -       0x00000004   Zero   RW         1935    .bss.g_dbg_bus_power_target  debug_vars.o
-    0x200002ac        -       0x00000008   Zero   RW         1968    .bss.g_dbg_busvloop_err  debug_vars.o
-    0x200002b4        -       0x00000004   Zero   RW         1966    .bss.g_dbg_busvloop_iout  debug_vars.o
-    0x200002b8        -       0x00000004   Zero   RW         1964    .bss.g_dbg_busvloop_ki  debug_vars.o
-    0x200002bc        -       0x00000004   Zero   RW         1963    .bss.g_dbg_busvloop_kp  debug_vars.o
-    0x200002c0        -       0x00000004   Zero   RW         1967    .bss.g_dbg_busvloop_out  debug_vars.o
-    0x200002c4        -       0x00000004   Zero   RW         1965    .bss.g_dbg_busvloop_pout  debug_vars.o
-    0x200002c8        -       0x00000004   Zero   RW         1943    .bss.g_dbg_can_disable_cnt  debug_vars.o
-    0x200002cc        -       0x00000001   Zero   RW         1944    .bss.g_dbg_can_disable_flag  debug_vars.o
-    0x200002cd   COMPRESSED   0x00000001   PAD
-    0x200002ce        -       0x00000002   Zero   RW         1946    .bss.g_dbg_can_div_cnt  debug_vars.o
-    0x200002d0        -       0x00000004   Zero   RW         1972    .bss.g_dbg_can_last_tick  debug_vars.o
-    0x200002d4        -       0x00000004   Zero   RW         1937    .bss.g_dbg_cap_v_max  debug_vars.o
-    0x200002d8        -       0x00000004   Zero   RW         1925    .bss.g_dbg_ccap     debug_vars.o
-    0x200002dc        -       0x00000004   Zero   RW         1922    .bss.g_dbg_cin      debug_vars.o
-    0x200002e0        -       0x00000004   Zero   RW         1941    .bss.g_dbg_cloop_ref  debug_vars.o
-    0x200002e4        -       0x00000004   Zero   RW         1923    .bss.g_dbg_cout     debug_vars.o
-    0x200002e8        -       0x00000004   Zero   RW         1947    .bss.g_dbg_ffd_ratio  debug_vars.o
-    0x200002ec        -       0x00000008   Zero   RW         1962    .bss.g_dbg_ploop_err  debug_vars.o
-    0x200002f4        -       0x00000004   Zero   RW         1960    .bss.g_dbg_ploop_iout  debug_vars.o
-    0x200002f8        -       0x00000004   Zero   RW         1958    .bss.g_dbg_ploop_ki  debug_vars.o
-    0x200002fc        -       0x00000004   Zero   RW         1957    .bss.g_dbg_ploop_kp  debug_vars.o
-    0x20000300        -       0x00000004   Zero   RW         1961    .bss.g_dbg_ploop_out  debug_vars.o
-    0x20000304        -       0x00000004   Zero   RW         1959    .bss.g_dbg_ploop_pout  debug_vars.o
-    0x20000308        -       0x00000004   Zero   RW         1939    .bss.g_dbg_ploop_ref  debug_vars.o
-    0x2000030c        -       0x00000004   Zero   RW         1936    .bss.g_dbg_power_set  debug_vars.o
-    0x20000310        -       0x00000002   Zero   RW         1945    .bss.g_dbg_power_start_tick  debug_vars.o
-    0x20000312        -       0x00000010   Zero   RW         1933    .bss.g_dbg_raw_ccap  debug_vars.o
-    0x20000322        -       0x00000010   Zero   RW         1930    .bss.g_dbg_raw_cin  debug_vars.o
-    0x20000332        -       0x00000010   Zero   RW         1931    .bss.g_dbg_raw_cout  debug_vars.o
-    0x20000342        -       0x00000010   Zero   RW         1932    .bss.g_dbg_raw_vcap  debug_vars.o
-    0x20000352        -       0x00000010   Zero   RW         1929    .bss.g_dbg_raw_vin  debug_vars.o
-    0x20000362        -       0x00000001   Zero   RW         1942    .bss.g_dbg_restart_flag  debug_vars.o
-    0x20000363        -       0x00000001   Zero   RW         1948    .bss.g_dbg_startup_charging  debug_vars.o
-    0x20000364        -       0x00000001   Zero   RW         1934    .bss.g_dbg_state    debug_vars.o
-    0x20000365   COMPRESSED   0x00000003   PAD
-    0x20000368        -       0x00000004   Zero   RW         1924    .bss.g_dbg_vcap     debug_vars.o
-    0x2000036c        -       0x00000004   Zero   RW         1928    .bss.g_dbg_vcap_last  debug_vars.o
-    0x20000370        -       0x00000004   Zero   RW         1949    .bss.g_dbg_vcap_reg_target  debug_vars.o
-    0x20000374        -       0x00000004   Zero   RW         1921    .bss.g_dbg_vin      debug_vars.o
-    0x20000378        -       0x00000004   Zero   RW         1927    .bss.g_dbg_vin_last  debug_vars.o
-    0x2000037c        -       0x00000008   Zero   RW         1956    .bss.g_dbg_vloop_err  debug_vars.o
-    0x20000384        -       0x00000004   Zero   RW         1954    .bss.g_dbg_vloop_iout  debug_vars.o
-    0x20000388        -       0x00000004   Zero   RW         1952    .bss.g_dbg_vloop_ki  debug_vars.o
-    0x2000038c        -       0x00000004   Zero   RW         1951    .bss.g_dbg_vloop_kp  debug_vars.o
-    0x20000390        -       0x00000004   Zero   RW         1955    .bss.g_dbg_vloop_out  debug_vars.o
-    0x20000394        -       0x00000004   Zero   RW         1953    .bss.g_dbg_vloop_pout  debug_vars.o
-    0x20000398        -       0x00000004   Zero   RW         1940    .bss.g_dbg_vloop_ref  debug_vars.o
-    0x2000039c        -       0x00000004   Zero   RW         1938    .bss.g_dbg_volt_ratio  debug_vars.o
-    0x200003a0        -       0x00000004   Zero   RW         1926    .bss.g_dbg_vout     debug_vars.o
-    0x200003a4        -       0x00000004   Zero   RW         1950    .bss.g_dbg_work_tick  debug_vars.o
-    0x200003a8        -       0x0000006c   Zero   RW           48    .bss.hadc1          adc.o
-    0x20000414        -       0x0000006c   Zero   RW           49    .bss.hadc2          adc.o
-    0x20000480        -       0x0000006c   Zero   RW           50    .bss.hadc3          adc.o
-    0x200004ec        -       0x0000006c   Zero   RW           51    .bss.hadc4          adc.o
-    0x20000558        -       0x0000006c   Zero   RW           52    .bss.hadc5          adc.o
-    0x200005c4        -       0x00000060   Zero   RW           53    .bss.hdma_adc2      adc.o
-    0x20000624        -       0x00000060   Zero   RW           54    .bss.hdma_adc3      adc.o
-    0x20000684        -       0x00000060   Zero   RW           55    .bss.hdma_adc4      adc.o
-    0x200006e4        -       0x00000060   Zero   RW           56    .bss.hdma_adc5      adc.o
-    0x20000744        -       0x00000060   Zero   RW          138    .bss.hdma_usart1_rx  usart.o
-    0x200007a4        -       0x00000060   Zero   RW          139    .bss.hdma_usart1_tx  usart.o
-    0x20000804        -       0x00000064   Zero   RW           81    .bss.hfdcan2        fdcan.o
-    0x20000868        -       0x000000fc   Zero   RW           98    .bss.hhrtim1        hrtim.o
-    0x20000964        -       0x0000004c   Zero   RW          117    .bss.htim2          tim.o
-    0x200009b0        -       0x0000004c   Zero   RW          118    .bss.htim3          tim.o
-    0x200009fc        -       0x0000004c   Zero   RW          119    .bss.htim4          tim.o
-    0x20000a48        -       0x00000094   Zero   RW          137    .bss.huart1         usart.o
-    0x20000adc        -       0x00000094   Zero   RW          136    .bss.huart4         usart.o
-    0x20000b70        -       0x00000004   Zero   RW          412    .bss.uwTick         stm32g4xx_hal.o
-    0x20000b74   COMPRESSED   0x00000004   PAD
-    0x20000b78        -       0x00000200   Zero   RW            2    HEAP                startup_stm32g474xx.o
-    0x20000d78        -       0x00000400   Zero   RW            1    STACK               startup_stm32g474xx.o
+    0x2000000c   COMPRESSED   0x000001ac   Data   RW         1871    .data._ZN8supercap14g_control_taskE  global_instances.o
+    0x200001b8        -       0x00000060   Zero   RW         2108    .bss                c_w.l(libspace.o)
+    0x20000218        -       0x00000068   Zero   RW           57    .bss..L_MergedGlobals  adc.o
+    0x20000280        -       0x0000001c   Zero   RW         1870    .bss._ZN8supercap16g_super_cap_commE  global_instances.o
+    0x2000029c        -       0x00000008   Zero   RW         1899    .bss._ZN8supercapL7tx_dataE  super_cap_comm.o
+    0x200002a4        -       0x00000028   Zero   RW         1900    .bss._ZN8supercapL9rx_headerE  super_cap_comm.o
+    0x200002cc        -       0x00000004   Zero   RW         1987    .bss.g_dbg_battery_power  debug_vars.o
+    0x200002d0        -       0x00000004   Zero   RW         1986    .bss.g_dbg_boost_duty  debug_vars.o
+    0x200002d4        -       0x00000004   Zero   RW         1985    .bss.g_dbg_buck_duty  debug_vars.o
+    0x200002d8        -       0x00000004   Zero   RW         1935    .bss.g_dbg_bus_power_target  debug_vars.o
+    0x200002dc        -       0x00000004   Zero   RW         1942    .bss.g_dbg_bus_vloop_out  debug_vars.o
+    0x200002e0        -       0x00000008   Zero   RW         1984    .bss.g_dbg_busvloop_err  debug_vars.o
+    0x200002e8        -       0x00000004   Zero   RW         1982    .bss.g_dbg_busvloop_iout  debug_vars.o
+    0x200002ec        -       0x00000004   Zero   RW         1980    .bss.g_dbg_busvloop_ki  debug_vars.o
+    0x200002f0        -       0x00000004   Zero   RW         1979    .bss.g_dbg_busvloop_kp  debug_vars.o
+    0x200002f4        -       0x00000004   Zero   RW         1983    .bss.g_dbg_busvloop_out  debug_vars.o
+    0x200002f8        -       0x00000004   Zero   RW         1981    .bss.g_dbg_busvloop_pout  debug_vars.o
+    0x200002fc        -       0x00000001   Zero   RW         1950    .bss.g_dbg_can_charge_cap  debug_vars.o
+    0x200002fd   COMPRESSED   0x00000003   PAD
+    0x20000300        -       0x00000004   Zero   RW         1944    .bss.g_dbg_can_disable_cnt  debug_vars.o
+    0x20000304        -       0x00000001   Zero   RW         1945    .bss.g_dbg_can_disable_flag  debug_vars.o
+    0x20000305   COMPRESSED   0x00000001   PAD
+    0x20000306        -       0x00000002   Zero   RW         1947    .bss.g_dbg_can_div_cnt  debug_vars.o
+    0x20000308        -       0x00000004   Zero   RW         1988    .bss.g_dbg_can_last_tick  debug_vars.o
+    0x2000030c        -       0x00000004   Zero   RW         1937    .bss.g_dbg_cap_v_max  debug_vars.o
+    0x20000310        -       0x00000004   Zero   RW         1925    .bss.g_dbg_ccap     debug_vars.o
+    0x20000314        -       0x00000004   Zero   RW         1922    .bss.g_dbg_cin      debug_vars.o
+    0x20000318        -       0x00000004   Zero   RW         1941    .bss.g_dbg_cloop_ref  debug_vars.o
+    0x2000031c        -       0x00000004   Zero   RW         1923    .bss.g_dbg_cout     debug_vars.o
+    0x20000320        -       0x00000004   Zero   RW         1948    .bss.g_dbg_ffd_ratio  debug_vars.o
+    0x20000324        -       0x00000008   Zero   RW         1966    .bss.g_dbg_high_vloop_err  debug_vars.o
+    0x2000032c        -       0x00000004   Zero   RW         1964    .bss.g_dbg_high_vloop_iout  debug_vars.o
+    0x20000330        -       0x00000004   Zero   RW         1962    .bss.g_dbg_high_vloop_ki  debug_vars.o
+    0x20000334        -       0x00000004   Zero   RW         1961    .bss.g_dbg_high_vloop_kp  debug_vars.o
+    0x20000338        -       0x00000004   Zero   RW         1965    .bss.g_dbg_high_vloop_out  debug_vars.o
+    0x2000033c        -       0x00000004   Zero   RW         1963    .bss.g_dbg_high_vloop_pout  debug_vars.o
+    0x20000340        -       0x00000004   Zero   RW         1952    .bss.g_dbg_load_power_est  debug_vars.o
+    0x20000344        -       0x00000001   Zero   RW         1949    .bss.g_dbg_low_clamp_active  debug_vars.o
+    0x20000345   COMPRESSED   0x00000003   PAD
+    0x20000348        -       0x00000008   Zero   RW         1972    .bss.g_dbg_low_vloop_err  debug_vars.o
+    0x20000350        -       0x00000004   Zero   RW         1970    .bss.g_dbg_low_vloop_iout  debug_vars.o
+    0x20000354        -       0x00000004   Zero   RW         1968    .bss.g_dbg_low_vloop_ki  debug_vars.o
+    0x20000358        -       0x00000004   Zero   RW         1967    .bss.g_dbg_low_vloop_kp  debug_vars.o
+    0x2000035c        -       0x00000004   Zero   RW         1971    .bss.g_dbg_low_vloop_out  debug_vars.o
+    0x20000360        -       0x00000004   Zero   RW         1969    .bss.g_dbg_low_vloop_pout  debug_vars.o
+    0x20000364        -       0x00000004   Zero   RW         1951    .bss.g_dbg_pcap     debug_vars.o
+    0x20000368        -       0x00000008   Zero   RW         1978    .bss.g_dbg_ploop_err  debug_vars.o
+    0x20000370        -       0x00000004   Zero   RW         1976    .bss.g_dbg_ploop_iout  debug_vars.o
+    0x20000374        -       0x00000004   Zero   RW         1974    .bss.g_dbg_ploop_ki  debug_vars.o
+    0x20000378        -       0x00000004   Zero   RW         1973    .bss.g_dbg_ploop_kp  debug_vars.o
+    0x2000037c        -       0x00000004   Zero   RW         1977    .bss.g_dbg_ploop_out  debug_vars.o
+    0x20000380        -       0x00000004   Zero   RW         1975    .bss.g_dbg_ploop_pout  debug_vars.o
+    0x20000384        -       0x00000004   Zero   RW         1939    .bss.g_dbg_ploop_ref  debug_vars.o
+    0x20000388        -       0x00000004   Zero   RW         1936    .bss.g_dbg_power_set  debug_vars.o
+    0x2000038c        -       0x00000002   Zero   RW         1946    .bss.g_dbg_power_start_tick  debug_vars.o
+    0x2000038e        -       0x00000010   Zero   RW         1933    .bss.g_dbg_raw_ccap  debug_vars.o
+    0x2000039e        -       0x00000010   Zero   RW         1930    .bss.g_dbg_raw_cin  debug_vars.o
+    0x200003ae        -       0x00000010   Zero   RW         1931    .bss.g_dbg_raw_cout  debug_vars.o
+    0x200003be        -       0x00000010   Zero   RW         1932    .bss.g_dbg_raw_vcap  debug_vars.o
+    0x200003ce        -       0x00000010   Zero   RW         1929    .bss.g_dbg_raw_vin  debug_vars.o
+    0x200003de        -       0x00000001   Zero   RW         1943    .bss.g_dbg_restart_flag  debug_vars.o
+    0x200003df        -       0x00000001   Zero   RW         1934    .bss.g_dbg_state    debug_vars.o
+    0x200003e0        -       0x00000004   Zero   RW         1924    .bss.g_dbg_vcap     debug_vars.o
+    0x200003e4        -       0x00000004   Zero   RW         1928    .bss.g_dbg_vcap_last  debug_vars.o
+    0x200003e8        -       0x00000004   Zero   RW         1953    .bss.g_dbg_vcap_reg_target  debug_vars.o
+    0x200003ec        -       0x00000004   Zero   RW         1921    .bss.g_dbg_vin      debug_vars.o
+    0x200003f0        -       0x00000004   Zero   RW         1927    .bss.g_dbg_vin_last  debug_vars.o
+    0x200003f4        -       0x00000008   Zero   RW         1960    .bss.g_dbg_vloop_err  debug_vars.o
+    0x200003fc        -       0x00000004   Zero   RW         1958    .bss.g_dbg_vloop_iout  debug_vars.o
+    0x20000400        -       0x00000004   Zero   RW         1956    .bss.g_dbg_vloop_ki  debug_vars.o
+    0x20000404        -       0x00000004   Zero   RW         1955    .bss.g_dbg_vloop_kp  debug_vars.o
+    0x20000408        -       0x00000004   Zero   RW         1959    .bss.g_dbg_vloop_out  debug_vars.o
+    0x2000040c        -       0x00000004   Zero   RW         1957    .bss.g_dbg_vloop_pout  debug_vars.o
+    0x20000410        -       0x00000004   Zero   RW         1940    .bss.g_dbg_vloop_ref  debug_vars.o
+    0x20000414        -       0x00000004   Zero   RW         1938    .bss.g_dbg_volt_ratio  debug_vars.o
+    0x20000418        -       0x00000004   Zero   RW         1926    .bss.g_dbg_vout     debug_vars.o
+    0x2000041c        -       0x00000004   Zero   RW         1954    .bss.g_dbg_work_tick  debug_vars.o
+    0x20000420        -       0x0000006c   Zero   RW           48    .bss.hadc1          adc.o
+    0x2000048c        -       0x0000006c   Zero   RW           49    .bss.hadc2          adc.o
+    0x200004f8        -       0x0000006c   Zero   RW           50    .bss.hadc3          adc.o
+    0x20000564        -       0x0000006c   Zero   RW           51    .bss.hadc4          adc.o
+    0x200005d0        -       0x0000006c   Zero   RW           52    .bss.hadc5          adc.o
+    0x2000063c        -       0x00000060   Zero   RW           53    .bss.hdma_adc2      adc.o
+    0x2000069c        -       0x00000060   Zero   RW           54    .bss.hdma_adc3      adc.o
+    0x200006fc        -       0x00000060   Zero   RW           55    .bss.hdma_adc4      adc.o
+    0x2000075c        -       0x00000060   Zero   RW           56    .bss.hdma_adc5      adc.o
+    0x200007bc        -       0x00000060   Zero   RW          138    .bss.hdma_usart1_rx  usart.o
+    0x2000081c        -       0x00000060   Zero   RW          139    .bss.hdma_usart1_tx  usart.o
+    0x2000087c        -       0x00000064   Zero   RW           81    .bss.hfdcan2        fdcan.o
+    0x200008e0        -       0x000000fc   Zero   RW           98    .bss.hhrtim1        hrtim.o
+    0x200009dc        -       0x0000004c   Zero   RW          117    .bss.htim2          tim.o
+    0x20000a28        -       0x0000004c   Zero   RW          118    .bss.htim3          tim.o
+    0x20000a74        -       0x0000004c   Zero   RW          119    .bss.htim4          tim.o
+    0x20000ac0        -       0x00000094   Zero   RW          137    .bss.huart1         usart.o
+    0x20000b54        -       0x00000094   Zero   RW          136    .bss.huart4         usart.o
+    0x20000be8        -       0x00000004   Zero   RW          412    .bss.uwTick         stm32g4xx_hal.o
+    0x20000bec   COMPRESSED   0x00000004   PAD
+    0x20000bf0        -       0x00000200   Zero   RW            2    HEAP                startup_stm32g474xx.o
+    0x20000df0        -       0x00000400   Zero   RW            1    STACK               startup_stm32g474xx.o
 
 
 ==============================================================================
@@ -4658,47 +4712,47 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      1712         14          0          0       1028       9323   adc.o
-      1192        188          0          0          0       9452   adc_sampler.o
-        12          0          0          0          0       1596   app_init.o
-       324         20          0          0          0       4570   buckboost.o
-      3380        138          0          0          0      29281   control_task.o
-       156          4          0          0          0      11698   debug_interface.o
-         0          0          0          0        264       3216   debug_vars.o
-       184          0          0          0          0       4170   dma.o
-       258          0          0          0        100       8249   fdcan.o
-         0          0          0        376         28      10274   global_instances.o
-        86          0          0          0          0       1641   gpio.o
-      1008          0          0          0        252      10907   hrtim.o
-       176          0          0          0          0       3037   main.o
-       174          0          0          0          0       3340   pid_controller.o
+      1712         14          0          0       1028       9326   adc.o
+      1192        188          0          0          0       9455   adc_sampler.o
+        12          0          0          0          0       1599   app_init.o
+       324         20          0          0          0       4573   buckboost.o
+      3880        138          0          0          0      31029   control_task.o
+       174          4          0          0          0      13745   debug_interface.o
+         0          0          0          0        333       3810   debug_vars.o
+       184          0          0          0          0       4173   dma.o
+       258          0          0          0        100       8252   fdcan.o
+         0          0          0        428         28      10834   global_instances.o
+        86          0          0          0          0       1644   gpio.o
+      1008          0          0          0        252      10910   hrtim.o
+       176          0          0          0          0       3040   main.o
+       174          0          0          0          0       3343   pid_controller.o
         64         26        472          0       1536        860   startup_stm32g474xx.o
-       182          0          0          8          4       9602   stm32g4xx_hal.o
-      2372          0          0          0          0      28752   stm32g4xx_hal_adc.o
-       520          0          0          0          0      24115   stm32g4xx_hal_adc_ex.o
-       196          0          0          0          0      11092   stm32g4xx_hal_cortex.o
-       922          0          0          0          0       9172   stm32g4xx_hal_dma.o
-      2122          0         16          0          0      23505   stm32g4xx_hal_fdcan.o
-       434          0          0          0          0       5256   stm32g4xx_hal_gpio.o
-      3556        352          0          0          0      77840   stm32g4xx_hal_hrtim.o
-        68          0          0          0          0       1765   stm32g4xx_hal_msp.o
-       288          0          0          0          0       9290   stm32g4xx_hal_pwr_ex.o
-      2216          0          0          0          0      10322   stm32g4xx_hal_rcc.o
-       726          0          0          0          0      11415   stm32g4xx_hal_rcc_ex.o
-      1634          0          0          0          0      63894   stm32g4xx_hal_tim.o
-       236          0          0          0          0      31002   stm32g4xx_hal_tim_ex.o
-      4728         48         40          0          0      42887   stm32g4xx_hal_uart.o
-       340          0         16          0          0      11293   stm32g4xx_hal_uart_ex.o
-       164          0          0          0          0       9796   stm32g4xx_it.o
-       600          8          0          0         48       8921   super_cap_comm.o
-        18          0         24          4          0       2787   system_stm32g4xx.o
-       506          0          0          0        228       9594   tim.o
-       646          0          0          0        488       9823   usart.o
+       182          0          0          8          4       9605   stm32g4xx_hal.o
+      2372          0          0          0          0      28755   stm32g4xx_hal_adc.o
+       520          0          0          0          0      24118   stm32g4xx_hal_adc_ex.o
+       196          0          0          0          0      11095   stm32g4xx_hal_cortex.o
+       922          0          0          0          0       9175   stm32g4xx_hal_dma.o
+      2122          0         16          0          0      23508   stm32g4xx_hal_fdcan.o
+       434          0          0          0          0       5259   stm32g4xx_hal_gpio.o
+      3556        352          0          0          0      77843   stm32g4xx_hal_hrtim.o
+        68          0          0          0          0       1768   stm32g4xx_hal_msp.o
+       288          0          0          0          0       9293   stm32g4xx_hal_pwr_ex.o
+      2216          0          0          0          0      10325   stm32g4xx_hal_rcc.o
+       726          0          0          0          0      11418   stm32g4xx_hal_rcc_ex.o
+      1634          0          0          0          0      63897   stm32g4xx_hal_tim.o
+       236          0          0          0          0      31005   stm32g4xx_hal_tim_ex.o
+      4728         48         40          0          0      42890   stm32g4xx_hal_uart.o
+       340          0         16          0          0      11296   stm32g4xx_hal_uart_ex.o
+       164          0          0          0          0       9799   stm32g4xx_it.o
+       600          8          0          0         48       8924   super_cap_comm.o
+        18          0         24          4          0       2790   system_stm32g4xx.o
+       506          0          0          0        228       9597   tim.o
+       646          0          0          0        488       9826   usart.o
 
     ----------------------------------------------------------------------
-     31392        798        602        388       3988     523737   Object Totals
+     31912        798        602        440       4056     528779   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-       192          0          2          0         12          0   (incl. Padding)
+       194          0          2          0         11          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4758,15 +4812,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     33750        858        602        388       4084     524205   Grand Totals
-     33750        858        602         24       4084     524205   ELF Image Totals (compressed)
-     33750        858        602         24          0          0   ROM Totals
+     34270        858        602        440       4152     529247   Grand Totals
+     34270        858        602         24       4152     529247   ELF Image Totals (compressed)
+     34270        858        602         24          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                34352 (  33.55kB)
-    Total RW  Size (RW Data + ZI Data)              4472 (   4.37kB)
-    Total ROM Size (Code + RO Data + RW Data)      34376 (  33.57kB)
+    Total RO  Size (Code + RO Data)                34872 (  34.05kB)
+    Total RW  Size (RW Data + ZI Data)              4592 (   4.48kB)
+    Total ROM Size (Code + RO Data + RW Data)      34896 (  34.08kB)
 
 ==============================================================================
 
