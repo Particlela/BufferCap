@@ -27,6 +27,7 @@ public:
     static constexpr float k_i_gain = I_GAIN;
     static constexpr float k_v_gain = V_GAIN;
     static constexpr float k_r_samp_2mr = R_SAMP_2mR;
+    static constexpr float k_r_samp_1mr = R_SAMP_1mR;
     static constexpr uint16_t k_i_bias = I_BIAS;
 
     void startDMA();

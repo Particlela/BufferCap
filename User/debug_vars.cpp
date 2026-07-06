@@ -46,6 +46,9 @@ bool     g_dbg_can_disable_flag   = false;
 uint16_t g_dbg_power_start_tick   = 0;
 uint16_t g_dbg_can_div_cnt        = 0;
 float    g_dbg_ffd_ratio          = 0.0f;
+bool     g_dbg_startup_charging   = false;
+float    g_dbg_vcap_reg_target    = 0.0f;
+uint32_t g_dbg_work_tick         = 0;
 
 /* ==================================================================
  * PID 控制器
@@ -83,7 +86,5 @@ float g_dbg_boost_duty  = 0.0f;
 /* ==================================================================
  * CAN 通信
  * ================================================================*/
-float    g_dbg_chassis_power = 0.0f;
-float    g_dbg_cap_volt      = 0.0f;
-float    g_dbg_outpower      = 0.0f;
+float    g_dbg_battery_power = 0.0f;
 uint32_t g_dbg_can_last_tick = 0;

@@ -1,11 +1,21 @@
 /**
  * @file    control_task.cpp
  * @brief   超级电容主控制任务类实现
+ *
+ * 控制环路架构：
+ *
+ *  四开关 Buck-Boost 双向变换器，能量流向由 volt_ratio 与 ffd_ratio 的关系决定：
+ *    volt_ratio > ffd_ratio → 充电 (母线 → 电容)
+ *    volt_ratio < ffd_ratio → 放电 (电容 → 母线)
+ *    volt_ratio = ffd_ratio → 平衡 (无净能量流动)
+ *
+ *  电容电流方向：ccap > 0 充电，ccap < 0 放电
+ *  电池电流方向：cin  > 0 从电池取电 (负载功率 + 电容功率 > 0)
  */
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+#include "math.h"
 #include "main.h"
 #include "tim.h"
 #include "hrtim.h"
@@ -24,13 +34,13 @@ void ControlTask::init()
 {
     comm_ = &g_super_cap_comm;
 
-    // 电容电压环：维持 vcap_target=28.5V
+    // 电容电压环：稳压至 vcap_reg_target_ (k_vcap_high 或 k_vcap_low)
     vloop_.init(0.06f, 0.00001f, 0.06f, 0.02f, -0.06f, -0.02f);
-    // 功率环：跟踪 CAN 底盘功率指令
+    // 功率环：跟踪 CAN 电池功率指令
     ploop_.init(0.0f, 0.000005f, 0.06f, 0.06f, -0.06f, -0.06f);
-    // 母线电压环：放电时维持 Vin=22.5V
-    // error = 22.5V - Vin，输出加到 ffd_ratio 上调节能量流动
-    bus_vloop_.init(0.3f, 0.00001f, 0.2f, 0.02f, 0.0f, -0.02f);
+    // 母线电压环：放电时维持 Vin = k_vin_reg_target
+    // PI 控制 (ki=0.00001)，避免积分负向饱和导致放电响应延迟
+    bus_vloop_.init(0.12f, 0.00001f, 0.2f, 0.02f, 0.0f, 0.0f);
 
     state_ = BufferCapState::kIdle;
 
@@ -56,6 +66,7 @@ void ControlTask::dispatch(TIM_HandleTypeDef *htim)
     }
 }
 
+/// @brief TIM2 主控制环 (20 kHz / 50 µs)
 void ControlTask::onTim2()
 {
     sampleAndFilter();
@@ -74,146 +85,298 @@ void ControlTask::sampleAndFilter()
     sampler_.applyComplementaryFilter(power_start_tick_ < k_soft_start_time);
 }
 
+/// @brief 软启动：功率目标以 10 kW/s 速率斜坡上升，无阶跃跳变
 void ControlTask::softStart()
 {
-    // 缓冲电容模式：软启动期间功率目标从 0 缓慢上升到 k_p_charge_max
-    if (power_start_tick_ < k_soft_start_time) {
-        if (power_set_ < k_p_charge_max) {
-            power_set_ += 0.01f;
-        } else {
-            power_set_ = k_p_charge_max;
-        }
-        power_start_tick_++;
-    } else {
-        power_set_ = k_p_charge_max;
+    // 目标功率
+    float target = k_p_charge_max;
+
+    // 电容欠压时限制充电功率
+    if (sampler_.vcap() < k_soft_start_vcap_threshold && target > k_soft_start_vcap_power_limit) {
+        target = k_soft_start_vcap_power_limit;
     }
 
-    if (sampler_.vcap() < 10.0f && power_set_ > 35.0f) {
-        power_set_ = 35.0f;
+    // 速率限制：5 kW/s ÷ 20 kHz = 0.25 W/tick
+    constexpr float k_ramp_per_tick = k_power_ramp_rate / 20000.0f;
+    if (power_set_ < target) {
+        power_set_ += k_ramp_per_tick;
+        if (power_set_ > target) power_set_ = target;
+    } else if (power_set_ > target) {
+        power_set_ -= k_ramp_per_tick;
+        if (power_set_ < target) power_set_ = target;
     }
 
+    // 硬限幅
     if (power_set_ > k_p_charge_max) power_set_ = k_p_charge_max;
-    if (power_set_ < 10.0f) power_set_ = 10.0f;
+    if (power_set_ < k_bus_power_min) power_set_ = k_bus_power_min;
+
+    // 软启动计时器 (用于互补滤波)
+    if (power_start_tick_ < k_soft_start_time) {
+        power_start_tick_++;
+    }
 }
 
+/// @brief 主控制状态机
 void ControlTask::computeControlLoop()
 {
-    float vin = sampler_.vin();
+    float vin  = sampler_.vin();
     float vcap = sampler_.vcap();
+    float ccap = sampler_.ccap();
+
+    // ====== 前馈变比计算 (含限幅) ======
     float vin_clamped = (vin < 15.0f) ? 15.0f : vin;
-    float ffd_ratio = vcap / vin_clamped;
+    float ffd_ratio_raw = vcap / vin_clamped;
+    // 限制前馈比不超过变换器最大变比，留余量
+    float ffd_ratio = (ffd_ratio_raw > k_ffd_max) ? k_ffd_max : ffd_ratio_raw;
+    g_dbg_ffd_ratio = ffd_ratio;
+
+    // ====== 启动充电模式退出 ======
+    // 充至 vcap > k_vcap_low + k_vcap_low_hysteresis 后退出启动模式
+    // 或 CAN 恢复后超过 k_startup_charge_timeout 仍未充至目标电压，强制退出
+    if (startup_charging_ && (vcap > k_vcap_low + k_vcap_low_hysteresis || work_tick_ > k_startup_charge_timeout)) {
+        startup_charging_ = false;
+    }
+
+    // ====== 全局硬关断保护 ======
+    // vcap >= k_vcap_max：过压关断
+    // vcap <= k_vcap_min 且非启动模式：欠压关断
+    if (vcap >= k_vcap_max || (vcap <= k_vcap_min && !startup_charging_)) {
+        HAL_HRTIM_WaveformOutputStop(&hhrtim1, HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2 | HRTIM_OUTPUT_TE1 | HRTIM_OUTPUT_TE2);
+        state_ = BufferCapState::kIdle;
+        vloop_.reset();
+        ploop_.reset();
+        bus_vloop_.reset();
+        restart_flag_ = true;
+        volt_ratio_ = ffd_ratio;
+        return;
+    }
+
+    // ====== 全局稳压切换 ======
+    // 过充保护：任何状态下 vcap 达到 k_vcap_high → 切稳压至 k_vcap_high
+    if (vcap >= k_vcap_high && state_ != BufferCapState::kVoltageReg) {
+        state_ = BufferCapState::kVoltageReg;
+        vcap_reg_target_ = k_vcap_high;
+        vloop_.reset();
+    }
+    // 过放保护：任何状态下 vcap 降至 k_vcap_low → 切稳压至 k_vcap_low
+    else if (vcap <= k_vcap_low && state_ != BufferCapState::kVoltageReg && !startup_charging_) {
+        state_ = BufferCapState::kVoltageReg;
+        vcap_reg_target_ = k_vcap_low;
+        vloop_.reset();
+    }
+
+    // ====== 状态机 ======
     float cloop_ratio;
     float vloop_ratio;
 
     switch (state_) {
+    // -------------------- kIdle：平衡态 --------------------
     case BufferCapState::kIdle:
-        //TODO: 如果是电容欠压导致的切入闲置，不应该使其等于ffd_ratio,应该使其等于 k_vcap_low / vin_clamped
-        volt_ratio_ = ffd_ratio;
-        // 母线电压高于充电阈值、电容未满、CAN 有效 → 开始充电
-        if (vin > k_vin_charge_threshold && vcap < k_vcap_max && !can_disable_flag_) {
-            state_ = BufferCapState::kCharging;
+        volt_ratio_ = ffd_ratio;  // 平衡态，不主动充放电
+
+        // 启动充电模式：CAN 已连接且电容严重欠压
+        if (startup_charging_ && !can_disable_flag_) {
+            state_ = BufferCapState::kPower;
             ploop_.reset();
             vloop_.reset();
         }
-        // 母线电压低于放电阈值且电容有余量 → 主动放电
-        else if (vin < k_vin_discharge_threshold && vcap > k_vcap_danger_low && !can_disable_flag_) {
+        // 恒输入功率模式：母线电压足够高且电容未满
+        else if (vin > k_vin_charge_threshold && vcap < k_vcap_high && !can_disable_flag_) {
+            state_ = BufferCapState::kPower;
+            ploop_.reset();
+            vloop_.reset();
+        }
+        // 主动放电：母线电压过低且电容有能量
+        else if (vin < k_vin_discharge_threshold && vcap > k_vcap_low && !can_disable_flag_) {
             state_ = BufferCapState::kDischarging;
             bus_vloop_.reset();
         }
+
+        // 过充保护：任何状态下 vcap 达到 k_vcap_high → 切稳压至 k_vcap_high
+        if (vcap >= k_vcap_high) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_high;
+            vloop_.reset();
+        }
+        // 过放保护：任何状态下 vcap 降至 k_vcap_low → 切稳压至 k_vcap_low
+        else if (vcap <= k_vcap_low && !startup_charging_) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_low;
+            vloop_.reset();
+        }
+
         break;
 
-    case BufferCapState::kCharging:
-        // 母线电压低于放电阈值 → 切换放电
-        if (vin < k_vin_discharge_threshold) {
+    // -------------------- kPower：恒输入功率模式 --------------------
+    case BufferCapState::kPower:
+        // 母线电压过低 → 切换放电
+        if (vin < k_vin_discharge_threshold && vcap > k_vcap_low) {
             state_ = BufferCapState::kDischarging;
             bus_vloop_.reset();
             volt_ratio_ = ffd_ratio;
             break;
         }
-        // 电容电压达到目标 → 切换稳压
-        if (vcap >= k_vcap_target) {
+        // vcap 达到上限 → 切稳压
+        if (vcap >= k_vcap_high - k_vcap_high_tolerance) {
             state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_high;
             vloop_.reset();
+            volt_ratio_ = ffd_ratio;
+            break;
+        }
+        // vcap 降至下限 → 切稳压
+        if (vcap <= k_vcap_low + k_vcap_low_tolerance && !startup_charging_) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_low;
+            vloop_.reset();
+            volt_ratio_ = ffd_ratio;
+            break;
         }
 
-        // 充电功率目标来自 CAN 底盘指令
-        bus_power_target_ = comm_->chassis2cap_msg.chassis_power;
-        // TODO:仅测试
-        bus_power_target_ = 50.0f;
-        if (bus_power_target_ > power_set_) bus_power_target_ = power_set_;  // 软启动限制
+        // 电池功率目标来自 CAN 指令
+        bus_power_target_ = comm_->chassis2cap_msg.battery_power;
+        // 软启动功率限制
+        if (bus_power_target_ > power_set_) bus_power_target_ = power_set_;
         if (bus_power_target_ > k_p_charge_max) bus_power_target_ = k_p_charge_max;
-        if (bus_power_target_ < 10.0f) bus_power_target_ = 10.0f;
+        if (bus_power_target_ < k_bus_power_min) bus_power_target_ = k_bus_power_min;
 
+        //TODO: 测试
+        bus_power_target_ = 60.0f; // 测试用
+
+        // 功率环 + 电压环取小
         ploop_ref_ = ploop_.compute(sampler_.pin(), bus_power_target_);
-        vloop_ref_ = vloop_.compute(vcap, k_vcap_target);
+        vloop_ref_ = vloop_.compute(vcap, k_vcap_high);
         cloop_ref_ = ploop_ref_;
 
         cloop_ratio = ffd_ratio + cloop_ref_;
         vloop_ratio = ffd_ratio + vloop_ref_;
         volt_ratio_ = (vloop_ratio <= cloop_ratio) ? vloop_ratio : cloop_ratio;
-        g_dbg_ffd_ratio = ffd_ratio;
-        
+
+        // 过充保护：任何状态下 vcap 达到 k_vcap_high → 切稳压至 k_vcap_high
+        if (vcap >= k_vcap_high) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_high;
+            vloop_.reset();
+        }
+        // 过放保护：任何状态下 vcap 降至 k_vcap_low → 切稳压至 k_vcap_low
+        else if (vcap <= k_vcap_low && !startup_charging_) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_low;
+            vloop_.reset();
+        }
+
         break;
 
+    // -------------------- kVoltageReg：电压环稳压 --------------------
     case BufferCapState::kVoltageReg:
-        // 母线电压过低 → 主动放电支撑
-        if (vin < k_vin_discharge_threshold) {
+        // 母线电压过低且电容有能量 → 切换放电 (带滞回，避免边界振荡)
+        if (vin < k_vin_discharge_threshold && vcap > k_vcap_low + k_vcap_low_hysteresis) {
             state_ = BufferCapState::kDischarging;
             bus_vloop_.reset();
             volt_ratio_ = ffd_ratio;
             break;
         }
-        // 电容电压回落 → 重新充电
-        if (vcap < k_vcap_target - 1.0f) {
-            state_ = BufferCapState::kCharging;
+        // 稳压上限模式：vcap 回落 → 重新恒功率
+        if (fabsf(vcap_reg_target_ - k_vcap_high) < k_vcap_target_tolerance && vcap < k_vcap_high - k_vcap_high_hysteresis) {
+            state_ = BufferCapState::kPower;
             ploop_.reset();
+            vloop_.reset();
             volt_ratio_ = ffd_ratio;
             break;
         }
-
-        vloop_ref_ = vloop_.compute(vcap, k_vcap_target);
-        volt_ratio_ = ffd_ratio + vloop_ref_;
-        break;
-
-    case BufferCapState::kDischarging:
-        // 电容电压到达危险下限 → 停止放电
-        if (vcap < k_vcap_danger_low) {
-            state_ = BufferCapState::kIdle;
-            volt_ratio_ = ffd_ratio;
-            break;
-        }
-        // 母线电压恢复 → 重新充电
-        if (vin > k_vin_charge_threshold) {
-            state_ = BufferCapState::kCharging;
+        // 稳压下限模式：母线恢复 → 重新恒功率
+        if (fabsf(vcap_reg_target_ - k_vcap_low) < k_vcap_target_tolerance && vin > k_vin_charge_threshold) {
+            state_ = BufferCapState::kPower;
             ploop_.reset();
             vloop_.reset();
             volt_ratio_ = ffd_ratio;
             break;
         }
 
-        //TODO: 必须要求在该模式下放电，否则如果电池与负载的工作恰好使得母线电压工作在该区域（小于恢复阈值大于稳压的期望值）
-        // 会导致其不断给电容充电，造成严重的过压问题
-        // 故首先要保证pid的范围 > 0, 此外还需要通过电容的功率(正负)来判断电容处于充电或放电状态以决定是否要切出该模式
-        // 还可以通过电容电压是否大于 k_vcap_target 来判断是否需要切出该模式
+        // 电压环稳压
+        vloop_ref_ = vloop_.compute(vcap, vcap_reg_target_);
 
-        // TODO: 放电时电容电压过低导致mos击穿问题，需要在该模式下添加保护机制
+        // 稳压下限模式：禁止放电 (vcap_ref < 0 时钳零)，仅允许充电维持
+        if (fabsf(vcap_reg_target_ - k_vcap_low) < k_vcap_target_tolerance && vloop_ref_ < 0.0f) {
+            vloop_ref_ = 0.0f;
+        }
 
-        // 母线电压环：主动放电维持 Vin=22.5V
-        // error = 22.5V - Vin，Vin 低于目标时 error 为正，需要增强放电
-        // 增强放电对应减小 volt_ratio（能量从电容流向母线）
-        // 该模式绝对不能充电
+        volt_ratio_ = ffd_ratio + vloop_ref_;
+        break;
+
+    // -------------------- kDischarging：母线电压环放电 --------------------
+    case BufferCapState::kDischarging:
+        // vcap 降至下限 → 切稳压 (全局检查已处理，此处为安全冗余)
+        if (vcap <= k_vcap_low) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_low;
+            vloop_.reset();
+            volt_ratio_ = ffd_ratio;
+            break;
+        }
+        // 母线电压恢复 → 重新恒功率
+        if (vin > k_vin_charge_threshold) {
+            state_ = BufferCapState::kPower;
+            ploop_.reset();
+            vloop_.reset();
+            volt_ratio_ = ffd_ratio;
+            break;
+        }
+        // vcap 达到上限 (异常情况) → 切稳压
+        if (vcap >= k_vcap_high) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_high;
+            vloop_.reset();
+            volt_ratio_ = ffd_ratio;
+            break;
+        }
+
+        // 母线电压环：放电维持 Vin = k_vin_reg_target
+        // error = k_vin_reg_target - vin，vin 低于目标时 error 为正
+        // 放电对应 volt_ratio < ffd_ratio，故 volt_ratio_ = ffd_ratio - bus_vloop_.out
+        // bus_vloop_.out ∈ [0, 0.2] (out_min=0)，保证该模式绝不充电
         bus_vloop_.compute(vin, k_vin_reg_target);
         volt_ratio_ = ffd_ratio - bus_vloop_.out;
+
+        // 过充保护：任何状态下 vcap 达到 k_vcap_high → 切稳压至 k_vcap_high
+        if (vcap >= k_vcap_high) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_high;
+            vloop_.reset();
+        }
+        // 过放保护：任何状态下 vcap 降至 k_vcap_low → 切稳压至 k_vcap_low
+        else if (vcap <= k_vcap_low && !startup_charging_) {
+            state_ = BufferCapState::kVoltageReg;
+            vcap_reg_target_ = k_vcap_low;
+            vloop_.reset();
+        }
+
         break;
     }
 
-    // 前馈约束，避免 vin 过小导致除零
-    float ff_bound = vcap / ((vin < 15.0f) ? 15.0f : vin);
-    if (volt_ratio_ > ff_bound + 0.2f) {
-        volt_ratio_ = ff_bound + 0.2f;
-    } else if (volt_ratio_ < ff_bound - 0.2f) {
-        volt_ratio_ = ff_bound - 0.2f;
+    // ====== 电容电流限制 (动态钳位) ======
+    // 当 |ccap| 接近 k_vcap_current_limit 时，线性收紧 volt_ratio 偏离 ffd_ratio 的余量
+    // 80% 限值以下：全余量 0.2；80%~100%：线性降至 0；超限：强制拉回 ffd_ratio
+    float abs_ccap = (ccap < 0.0f) ? -ccap : ccap;
+    float margin = 0.2f;
+    if (abs_ccap > k_vcap_current_limit * 0.8f) {
+        margin = 0.2f * (k_vcap_current_limit - abs_ccap) / (k_vcap_current_limit * 0.2f);
+        if (margin < 0.0f) margin = 0.0f;
     }
+    // 充电方向 (ccap > 0)：收紧上界
+    float charge_margin    = (ccap > 0.0f) ? margin : 0.2f;
+    // 放电方向 (ccap < 0)：收紧下界
+    float discharge_margin = (ccap < 0.0f) ? margin : 0.2f;
+
+    float upper_bound = ffd_ratio + charge_margin;
+    float lower_bound = ffd_ratio - discharge_margin;
+    if (volt_ratio_ > upper_bound) volt_ratio_ = upper_bound;
+    if (volt_ratio_ < lower_bound) volt_ratio_ = lower_bound;
+
+    // ====== 硬编码安全钳位 (固定值，最终安全网) ======
+    float ff_bound = ffd_ratio;
+    if (volt_ratio_ > ff_bound + 0.2f) volt_ratio_ = ff_bound + 0.2f;
+    if (volt_ratio_ < ff_bound - 0.2f) volt_ratio_ = ff_bound - 0.2f;
 }
 
 void ControlTask::updatePwm()
@@ -221,6 +384,7 @@ void ControlTask::updatePwm()
     converter_.update(volt_ratio_);
 }
 
+/// @brief TIM3 保护检查 (200 kHz / 5 µs)
 void ControlTask::onTim3()
 {
     checkProtection();
@@ -228,23 +392,28 @@ void ControlTask::onTim3()
 
 void ControlTask::checkProtection()
 {
-    if (HAL_GetTick() - comm_->last_tick() > k_can_timeout_ms) {
-        can_disable_cnt_++;
+    // ====== CAN 通信超时检测 ======
+    // 单次超时即判定 CAN 断连
+    can_disable_flag_ = (HAL_GetTick() - comm_->last_tick() > k_can_timeout_ms);
+    can_disable_cnt_ = can_disable_flag_ ? 1 : 0;
+
+    // ====== work_tick_ 管理：记录 CAN 正常接收后的持续时间 (ms) ======
+    if (can_disable_flag_) {
+        work_tick_ = 0;
+        work_tick_base_ = 0;
     } else {
-        can_disable_cnt_ = 0;
+        if (work_tick_base_ == 0) {
+            work_tick_base_ = HAL_GetTick();
+        }
+        work_tick_ = HAL_GetTick() - work_tick_base_;
     }
-    can_disable_flag_ = (can_disable_cnt_ > 5);
 
-    // TODO:仅测试
-    // can_disable_flag_ = false;
-
-    comm_->chassis2cap_msg.robot_hp = 100;
-
-    // 缓冲电容模式保护：母线过压、母线严重欠压、电容过压、CAN断连
+    // ====== 异常检测：CAN 断连、母线过压/欠压、电容过压、电容过流 ======
     bool abnormal = can_disable_flag_ ||
                     (sampler_.vin() < k_vin_low_threshold) ||
                     (sampler_.vin() > k_vin_high_threshold) ||
-                    (sampler_.vcap() > k_vcap_overvolt);
+                    (sampler_.vcap() > k_vcap_max) ||
+                    (fabsf(sampler_.ccap()) > k_vcap_current_limit * 1.5f);
 
     if (abnormal) {
         HAL_HRTIM_WaveformOutputStop(&hhrtim1, HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2 | HRTIM_OUTPUT_TE1 | HRTIM_OUTPUT_TE2);
@@ -255,24 +424,49 @@ void ControlTask::checkProtection()
         restart_flag_ = true;
     }
 
+    // ====== 恢复检测 ======
     bool recovered = !can_disable_flag_ &&
                      (sampler_.vin() > k_vin_recover_low) &&
                      (sampler_.vin() < k_vin_recover_high) &&
-                     (sampler_.vcap() < k_vcap_overvolt) &&
+                     (sampler_.vcap() < k_vcap_max) &&
+                    ((sampler_.vcap() > k_vcap_min + k_vcap_low_tolerance && work_tick_ > k_startup_charge_timeout) || 
+                     (work_tick_ <= k_startup_charge_timeout)) &&
                      restart_flag_;
 
     if (recovered) {
         HAL_HRTIM_WaveformOutputStart(&hhrtim1, HRTIM_OUTPUT_TB1 | HRTIM_OUTPUT_TB2 | HRTIM_OUTPUT_TE1 | HRTIM_OUTPUT_TE2);
         restart_flag_ = false;
+        // 恢复时复位 PID，避免历史积分造成冲击
+        vloop_.reset();
+        ploop_.reset();
+        bus_vloop_.reset();
+        // 启动充电模式：CAN 刚恢复且电容严重欠压时，豁免 k_vcap_min 关断
+        if (sampler_.vcap() < k_vcap_min) {
+            startup_charging_ = true;
+        }
     }
 }
 
+/// @brief TIM4 CAN 通信发送 (10 kHz / 100 µs, 19 分频 ≈ 526 Hz)
 void ControlTask::onTim4()
 {
     can_div_cnt_++;
     if (can_div_cnt_ == 19) {
-        comm_->cap2chassis_msg.cap_volt = sampler_.vcap();
-        comm_->cap2chassis_msg.outpower = sampler_.pin();
+        // 更新发送消息
+        comm_->cap2chassis_msg.vin  = sampler_.vin();
+        comm_->cap2chassis_msg.vcap = sampler_.vcap();
+        comm_->cap2chassis_msg.ccap = sampler_.ccap();
+        comm_->cap2chassis_msg.cin  = sampler_.cin();
+
+        // 剩余电量百分比：按储能 E = ½CV² 计算，以 k_vcap_low 为 0%，k_vcap_high 为 100%
+        float vcap_sq = sampler_.vcap() * sampler_.vcap();
+        float low_sq  = k_vcap_low * k_vcap_low;
+        float high_sq = k_vcap_high * k_vcap_high;
+        float remain = (vcap_sq - low_sq) / (high_sq - low_sq);
+        if (remain > 1.0f) remain = 1.0f;
+        if (remain < 0.0f) remain = 0.0f;
+        comm_->cap2chassis_msg.remain_pct = remain * 100.0f;
+
         can_div_cnt_ = 0;
         comm_->send();
     }
@@ -280,7 +474,7 @@ void ControlTask::onTim4()
 
 void ControlTask::debugSync()
 {
-    // ========== AdcSampler (通过公有 getter 访问) ==========
+    // ========== AdcSampler ==========
     const Sample_struct_t *s = sampler_.sample_buf();
     g_dbg_vin         = sampler_.vin();
     g_dbg_cin         = sampler_.cin();
@@ -313,8 +507,11 @@ void ControlTask::debugSync()
     g_dbg_can_disable_flag = can_disable_flag_;
     g_dbg_power_start_tick = power_start_tick_;
     g_dbg_can_div_cnt      = can_div_cnt_;
+    g_dbg_startup_charging = startup_charging_;
+    g_dbg_vcap_reg_target  = vcap_reg_target_;
+    g_dbg_work_tick        = work_tick_;
 
-    // ========== PID 控制器 (成员均为 public) ==========
+    // ========== PID 控制器 ==========
     g_dbg_vloop_kp       = vloop_.kp;
     g_dbg_vloop_ki       = vloop_.ki;
     g_dbg_vloop_pout     = vloop_.pout;
@@ -339,14 +536,12 @@ void ControlTask::debugSync()
     g_dbg_busvloop_err[0]   = bus_vloop_.error[0];
     g_dbg_busvloop_err[1]   = bus_vloop_.error[1];
 
-    // ========== Buck-Boost (通过公有 getter 访问) ==========
+    // ========== Buck-Boost ==========
     g_dbg_buck_duty  = converter_.buck_duty();
     g_dbg_boost_duty = converter_.boost_duty();
 
     // ========== CAN 通信 ==========
-    g_dbg_chassis_power = comm_->chassis2cap_msg.chassis_power;
-    g_dbg_cap_volt      = comm_->cap2chassis_msg.cap_volt;
-    g_dbg_outpower      = comm_->cap2chassis_msg.outpower;
+    g_dbg_battery_power = comm_->chassis2cap_msg.battery_power;
     g_dbg_can_last_tick = comm_->last_tick();
 }
 

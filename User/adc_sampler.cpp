@@ -36,10 +36,10 @@ void AdcSampler::startDMA()
 void AdcSampler::update()
 {
     vin_  = fitter(sample_.vin)  * k_adc_conv_fact * k_v_gain;
-    cin_  = (fitter(sample_.cin)  - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_2mr;
-    cout_ = (fitter(sample_.cout) - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_2mr;
+    cin_  = (fitter(sample_.cin)  - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_1mr;
+    cout_ = (fitter(sample_.cout) - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_1mr;
     vcap_ =  fitter(sample_.vcap) * k_adc_conv_fact * k_v_gain;
-    ccap_ = (fitter(sample_.ccap) - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_2mr;
+    ccap_ = (fitter(sample_.ccap) - k_i_bias) * k_adc_conv_fact * k_i_gain * k_r_samp_1mr;
 }
 
 void AdcSampler::applyComplementaryFilter(bool soft_starting)
@@ -51,9 +51,9 @@ void AdcSampler::applyComplementaryFilter(bool soft_starting)
         vin_last_ = vin_;
         vcap_last_ = vcap_;
     } else {
-        vin_ = 0.1f * vin_ + 0.9f * vin_last_;
+        vin_ = 0.8f * vin_ + 0.2f * vin_last_;
         vin_last_ = vin_;
-        vcap_ = 0.1f * vcap_ + 0.9f * vcap_last_;
+        vcap_ = 0.8f * vcap_ + 0.2f * vcap_last_;
         vcap_last_ = vcap_;
     }
 }

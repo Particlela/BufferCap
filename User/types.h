@@ -25,6 +25,7 @@ extern "C" {
 #define I_GAIN 0.05f                                               // 电流增益
 #define V_GAIN 20.0f                                               // 电压增益
 #define R_SAMP_2mR 500.0f                                          // 2mR采样电阻倒数
+#define R_SAMP_1mR 1000.0f                                         // 1mR采样电阻倒数
 
 typedef struct
 {

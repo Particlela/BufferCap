@@ -46,32 +46,55 @@ void SuperCapComm::filterInit()
     HAL_FDCAN_Start(&hfdcan2);
 }
 
+/// @brief 解码底盘 → 超级电容消息
+/// @details battery_power: 大端 uint16, 缩放 ×10, 范围 0 ~ 6553.5 W
 bool SuperCapComm::decode(const uint8_t rx_data[8], uint32_t rx_msg_std_id)
 {
     if (rx_msg_std_id != kRxId) {
         return false;
     }
-    chassis2cap_msg.pwr_buf = static_cast<uint16_t>((rx_data[0] << 8) | rx_data[1]);
-    chassis2cap_msg.pwr_limit = static_cast<uint16_t>((rx_data[2] << 8) | rx_data[3]);
-    chassis2cap_msg.robot_hp = static_cast<uint16_t>((rx_data[4] << 8) | rx_data[5]);
-    chassis2cap_msg.chassis_power = static_cast<float>((static_cast<uint16_t>((rx_data[6] << 8) | rx_data[7])) / 100.0f);
+    uint16_t power_raw = static_cast<uint16_t>((rx_data[0] << 8) | rx_data[1]);
+    chassis2cap_msg.battery_power = static_cast<float>(power_raw) / 10.0f;
     return true;
 }
 
+/// @brief 编码超级电容 → 底盘消息
+/// @details 5 个 12-bit 信号 + 4-bit 保留位，共 64 bit (8 字节)
 void SuperCapComm::encode(uint8_t tx_data[8]) const
 {
-    uint16_t remain_pct_tx = static_cast<uint16_t>(cap2chassis_msg.remain_pct * 100);
-    uint16_t outpower_tx = static_cast<uint16_t>(cap2chassis_msg.outpower * 100);
-    uint16_t cap_volt_tx = static_cast<uint16_t>(cap2chassis_msg.cap_volt * 100);
+    // ---------- 原始整数值计算 ----------
+    // remain_pct: 0~100% → ×10 → 0~1000 (12 bit)
+    uint16_t remain_raw = static_cast<uint16_t>(cap2chassis_msg.remain_pct * 10.0f);
+    // vin: 0~30V → ×100 → 0~3000 (12 bit)
+    uint16_t vin_raw = static_cast<uint16_t>(cap2chassis_msg.vin * 100.0f);
+    // vcap: 0~30V → ×100 → 0~3000 (12 bit)
+    uint16_t vcap_raw = static_cast<uint16_t>(cap2chassis_msg.vcap * 100.0f);
+    // ccap: -80~80A → ×20 → -1600~1600 → +80 偏移 → 0~3200 (12 bit)
+    uint16_t ccap_raw = static_cast<uint16_t>((cap2chassis_msg.ccap + 80.0f) * 20.0f);
+    // cin: -30~80A → ×20 → -600~1600 → +30 偏移 → 0~2200 (12 bit)
+    uint16_t cin_raw = static_cast<uint16_t>((cap2chassis_msg.cin + 30.0f) * 20.0f);
 
-    tx_data[0] = static_cast<uint8_t>(remain_pct_tx >> 8);
-    tx_data[1] = static_cast<uint8_t>(remain_pct_tx);
-    tx_data[2] = static_cast<uint8_t>(cap2chassis_msg.volt_src);
-    tx_data[3] = static_cast<uint8_t>(outpower_tx >> 8);
-    tx_data[4] = static_cast<uint8_t>(outpower_tx);
-    tx_data[5] = static_cast<uint8_t>(cap_volt_tx >> 8);
-    tx_data[6] = static_cast<uint8_t>(cap_volt_tx);
-    tx_data[7] = 0;
+    // ---------- 限幅 ----------
+    if (remain_raw > 1000) remain_raw = 1000;
+    if (vin_raw > 3000) vin_raw = 3000;
+    if (vcap_raw > 3000) vcap_raw = 3000;
+    if (ccap_raw > 3200) ccap_raw = 3200;
+    if (cin_raw > 2200) cin_raw = 2200;
+
+    // ---------- 按位打包 (大端序, MSB first) ----------
+    // bit  0~11: remain_pct
+    tx_data[0] = static_cast<uint8_t>(remain_raw >> 4);                                    // remain[11:4]
+    tx_data[1] = static_cast<uint8_t>(((remain_raw & 0x0F) << 4) | (vin_raw >> 8));        // remain[3:0] | vin[11:8]
+    // bit 12~23: vin
+    tx_data[2] = static_cast<uint8_t>(vin_raw & 0xFF);                                     // vin[7:0]
+    // bit 24~35: vcap
+    tx_data[3] = static_cast<uint8_t>(vcap_raw >> 4);                                      // vcap[11:4]
+    tx_data[4] = static_cast<uint8_t>(((vcap_raw & 0x0F) << 4) | (ccap_raw >> 8));         // vcap[3:0] | ccap[11:8]
+    // bit 36~47: ccap
+    tx_data[5] = static_cast<uint8_t>(ccap_raw & 0xFF);                                    // ccap[7:0]
+    // bit 48~59: cin
+    tx_data[6] = static_cast<uint8_t>(cin_raw >> 4);                                       // cin[11:4]
+    tx_data[7] = static_cast<uint8_t>((cin_raw & 0x0F) << 4);                              // cin[3:0] | reserved[3:0]=0
 }
 
 void SuperCapComm::updateTxMsg(const SuperCap2ChassisMsg& msg)
@@ -109,12 +132,6 @@ void SuperCapComm::rxFifoCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0I
     HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &rx_header, rx_data);
 
     if (g_super_cap_comm.decode(rx_data, rx_header.Identifier)) {
-        if (g_super_cap_comm.chassis2cap_msg.pwr_limit > 130) {
-            g_super_cap_comm.chassis2cap_msg.pwr_limit = 130;
-        }
-        if (g_super_cap_comm.chassis2cap_msg.pwr_limit < 10) {
-            g_super_cap_comm.chassis2cap_msg.pwr_limit = 10;
-        }
         g_super_cap_comm.last_tick_ = HAL_GetTick();
     }
 }

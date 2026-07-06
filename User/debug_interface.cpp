@@ -29,7 +29,7 @@ void DebugInterface::update(const AdcSampler& sampler, const ControlTask& ctrl, 
     buf_.data[6] = ctrl.ploop_ref();
     buf_.data[7] = ctrl.volt_ratio();
     buf_.data[8] = static_cast<float>(ctrl.state());
-    buf_.data[9] = comm.chassis2cap_msg.pwr_buf;
+    buf_.data[9] = comm.chassis2cap_msg.battery_power;
     buf_.data[10] = sampler.ccap();
     buf_.data[11] = ctrl.can_disable_flag() ? 1.0f : 0.0f;
     buf_.data[12] = static_cast<float>(ctrl.can_disable_cnt());

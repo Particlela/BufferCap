@@ -49,7 +49,10 @@ extern int       g_dbg_can_disable_cnt;     ///< CAN 断连计数器
 extern bool      g_dbg_can_disable_flag;    ///< CAN 断连标志
 extern uint16_t  g_dbg_power_start_tick;    ///< 软启动计时
 extern uint16_t  g_dbg_can_div_cnt;         ///< CAN 发送分频
-extern float     g_dbg_ffd_ratio;          ///< 当前 FFD 占空比系数
+extern float     g_dbg_ffd_ratio;           ///< 当前 FFD 占空比系数
+extern bool      g_dbg_startup_charging;    ///< 启动充电模式 (CAN 刚连上且 vcap < k_vcap_min)
+extern float     g_dbg_vcap_reg_target;     ///< 稳压目标值 (k_vcap_high 或 k_vcap_low)
+extern uint32_t  g_dbg_work_tick;           ///< CAN 正常工作时间 (ms)，断连清零
 
 /* ==================================================================
  * PID 控制器镜像变量
@@ -87,10 +90,8 @@ extern float g_dbg_boost_duty;     ///< Boost 占空比
 /* ==================================================================
  * CAN 通信镜像变量
  * ================================================================*/
-extern float    g_dbg_chassis_power;    ///< 底盘功率指令
-extern float    g_dbg_cap_volt;         ///< 发送给底盘的电容电压
-extern float    g_dbg_outpower;         ///< 发送给底盘的输出功率
-extern uint32_t g_dbg_can_last_tick;    ///< 最近 CAN 接收时间戳
+extern float    g_dbg_battery_power;   ///< 从电池吸收的功率指令 (W)，来自底盘
+extern uint32_t g_dbg_can_last_tick;   ///< 最近 CAN 接收时间戳
 
 #ifdef __cplusplus
 }
