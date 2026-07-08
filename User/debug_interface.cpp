@@ -37,7 +37,9 @@ void DebugInterface::update(const AdcSampler& sampler, const ControlTask& ctrl, 
 
 void DebugInterface::send()
 {
-    HAL_UART_Transmit_DMA(&huart1, reinterpret_cast<uint8_t*>(&buf_), sizeof(buf_));
+    if (huart1.gState == HAL_UART_STATE_READY) {
+        HAL_UART_Transmit_DMA(&huart1, reinterpret_cast<uint8_t*>(&buf_), sizeof(buf_));
+    }
 }
 
 } // namespace supercap

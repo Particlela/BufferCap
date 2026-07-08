@@ -1,8 +1,8 @@
 /*
  * @Author: 世界最低峰. 17091062+GrennBee@user.noreply.gitee.com
  * @Date: 2026-06-18 21:48:07
- * @LastEditors: 世界最低峰. 17091062+GrennBee@user.noreply.gitee.com
- * @LastEditTime: 2026-06-18 22:15:31
+ * @LastEditors: Particlela 2480338120@qq.com
+ * @LastEditTime: 2026-07-06 23:14:13
  * @FilePath: \2026BuffCapBalance\User\debug_vars.cpp
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,6 +33,7 @@ uint16_t g_dbg_raw_ccap[8]  = {0};
  * ControlTask
  * ================================================================*/
 uint8_t  g_dbg_state              = 0;
+float    g_dbg_chassis_power_target  = 0.0f;
 float    g_dbg_bus_power_target   = 0.0f;
 float    g_dbg_power_set          = 0.0f;
 float    g_dbg_cap_v_max          = 0.0f;
@@ -40,13 +41,17 @@ float    g_dbg_volt_ratio         = 0.0f;
 float    g_dbg_ploop_ref          = 0.0f;
 float    g_dbg_vloop_ref          = 0.0f;
 float    g_dbg_cloop_ref          = 0.0f;
+float    g_dbg_bus_vloop_out      = 0.0f;
 bool     g_dbg_restart_flag       = false;
 int      g_dbg_can_disable_cnt    = 0;
 bool     g_dbg_can_disable_flag   = false;
 uint16_t g_dbg_power_start_tick   = 0;
 uint16_t g_dbg_can_div_cnt        = 0;
 float    g_dbg_ffd_ratio          = 0.0f;
-bool     g_dbg_startup_charging   = false;
+bool     g_dbg_low_clamp_active   = false;
+bool     g_dbg_can_charge_cap     = false;
+float    g_dbg_pcap               = 0.0f;
+float    g_dbg_load_power_est     = 0.0f;
 float    g_dbg_vcap_reg_target    = 0.0f;
 uint32_t g_dbg_work_tick         = 0;
 
@@ -60,6 +65,22 @@ float g_dbg_vloop_pout     = 0.0f;
 float g_dbg_vloop_iout     = 0.0f;
 float g_dbg_vloop_out      = 0.0f;
 float g_dbg_vloop_err[2]   = {0.0f, 0.0f};
+
+/* --- 楂樺帇鐢靛帇鐜?--- */
+float g_dbg_high_vloop_kp       = 0.0f;
+float g_dbg_high_vloop_ki       = 0.0f;
+float g_dbg_high_vloop_pout     = 0.0f;
+float g_dbg_high_vloop_iout     = 0.0f;
+float g_dbg_high_vloop_out      = 0.0f;
+float g_dbg_high_vloop_err[2]   = {0.0f, 0.0f};
+
+/* --- 浣庡帇鐢靛帇鐜?--- */
+float g_dbg_low_vloop_kp       = 0.0f;
+float g_dbg_low_vloop_ki       = 0.0f;
+float g_dbg_low_vloop_pout     = 0.0f;
+float g_dbg_low_vloop_iout     = 0.0f;
+float g_dbg_low_vloop_out      = 0.0f;
+float g_dbg_low_vloop_err[2]   = {0.0f, 0.0f};
 
 /* --- 功率环 --- */
 float g_dbg_ploop_kp       = 0.0f;

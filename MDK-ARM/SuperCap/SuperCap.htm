@@ -3,7 +3,7 @@
 <title>Static Call Graph - [SuperCap\SuperCap.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image SuperCap\SuperCap.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Mon Jul  6 01:56:30 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6240002: Last Updated: Wed Jul  8 00:49:25 2026
 <BR><P>
 <H3>Maximum Stack Usage =        452 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1312,7 +1312,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c0]"></a>HAL_TIM_IRQHandler</STRONG> (Thumb, 460 bytes, Stack size 24 bytes, stm32g4xx_hal_tim.o(.text.HAL_TIM_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_TransitionErrorCallback
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIMEx_IndexErrorCallback
@@ -1341,7 +1341,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c4]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, control_task.o(.text.HAL_TIM_PeriodElapsedCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::checkProtection()
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::onTim2()
@@ -1654,21 +1654,21 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g474xx.o(.text)
 </UL>
 <P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM2_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = TIM2_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = TIM2_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g474xx.o(RESET)
 </UL>
 <P><STRONG><a name="[27]"></a>TIM3_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM3_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = TIM3_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = TIM3_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g474xx.o(RESET)
 </UL>
 <P><STRONG><a name="[28]"></a>TIM4_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32g4xx_it.o(.text.TIM4_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = TIM4_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = TIM4_IRQHandler &rArr; HAL_TIM_IRQHandler &rArr; HAL_TIM_PeriodElapsedCallback &rArr; supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
@@ -1754,7 +1754,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::onTim2()
 </UL>
 
-<P><STRONG><a name="[cf]"></a>supercap::ControlTask::checkProtection()</STRONG> (Thumb, 384 bytes, Stack size 8 bytes, control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv))
+<P><STRONG><a name="[cf]"></a>supercap::ControlTask::checkProtection()</STRONG> (Thumb, 356 bytes, Stack size 8 bytes, control_task.o(.text._ZN8supercap11ControlTask15checkProtectionEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = supercap::ControlTask::checkProtection()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
@@ -1765,8 +1765,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 
-<P><STRONG><a name="[10b]"></a>supercap::ControlTask::computeControlLoop()</STRONG> (Thumb, 1344 bytes, Stack size 64 bytes, control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = supercap::ControlTask::computeControlLoop()
+<P><STRONG><a name="[10b]"></a>supercap::ControlTask::computeControlLoop()</STRONG> (Thumb, 1564 bytes, Stack size 72 bytes, control_task.o(.text._ZN8supercap11ControlTask18computeControlLoopEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::PIDController::compute(float, float)
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::PIDController::reset()
@@ -1775,7 +1775,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::onTim2()
 </UL>
 
-<P><STRONG><a name="[10d]"></a>supercap::ControlTask::init()</STRONG> (Thumb, 228 bytes, Stack size 48 bytes, control_task.o(.text._ZN8supercap11ControlTask4initEv))
+<P><STRONG><a name="[10d]"></a>supercap::ControlTask::init()</STRONG> (Thumb, 264 bytes, Stack size 48 bytes, control_task.o(.text._ZN8supercap11ControlTask4initEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = supercap::ControlTask::init() &rArr; supercap::AdcSampler::startDMA() &rArr; HAL_ADC_Start_DMA &rArr; HAL_DMA_Start_IT
 </UL>
 <BR>[Calls]<UL><LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::AdcSampler::startDMA()
@@ -1788,8 +1788,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;super_cap_app_init
 </UL>
 
-<P><STRONG><a name="[ce]"></a>supercap::ControlTask::onTim2()</STRONG> (Thumb, 244 bytes, Stack size 16 bytes, control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
+<P><STRONG><a name="[ce]"></a>supercap::ControlTask::onTim2()</STRONG> (Thumb, 268 bytes, Stack size 16 bytes, control_task.o(.text._ZN8supercap11ControlTask6onTim2Ev))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = supercap::ControlTask::onTim2() &rArr; supercap::ControlTask::computeControlLoop()
 </UL>
 <BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::AdcSampler::calibrate(unsigned short)
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::AdcSampler::applyComplementaryFilter(bool)
@@ -1803,8 +1803,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_PeriodElapsedCallback
 </UL>
 
-<P><STRONG><a name="[115]"></a>supercap::ControlTask::debugSync()</STRONG> (Thumb, 864 bytes, Stack size 20 bytes, control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv))
-<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = supercap::ControlTask::debugSync()
+<P><STRONG><a name="[115]"></a>supercap::ControlTask::debugSync()</STRONG> (Thumb, 1124 bytes, Stack size 28 bytes, control_task.o(.text._ZN8supercap11ControlTask9debugSyncEv))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = supercap::ControlTask::debugSync()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::onTim2()
 </UL>
@@ -1858,7 +1858,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;supercap::ControlTask::computeControlLoop()
 </UL>
 
-<P><STRONG><a name="[117]"></a>supercap::DebugInterface::send()</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv))
+<P><STRONG><a name="[117]"></a>supercap::DebugInterface::send()</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, debug_interface.o(.text._ZN8supercap14DebugInterface4sendEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = supercap::DebugInterface::send() &rArr; HAL_UART_Transmit_DMA &rArr; HAL_DMA_Start_IT
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_DMA

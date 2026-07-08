@@ -165,7 +165,7 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart);
   */
 HAL_StatusTypeDef HAL_RS485Ex_Init(UART_HandleTypeDef *huart, uint32_t Polarity, uint32_t AssertionTime,
                                    uint32_t DeassertionTime)
-{
+    {
   uint32_t temp;
 
   /* Check the UART handle allocation */
