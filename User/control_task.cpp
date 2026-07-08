@@ -299,14 +299,14 @@ void ControlTask::computeControlLoop()
     }
 
     float abs_ccap = (ccap < 0.0f) ? -ccap : ccap;
-    float margin = 0.1f;
-    if (abs_ccap > k_vcap_current_limit * 0.9f) {
-        margin = 0.1f * (k_vcap_current_limit - abs_ccap) / (k_vcap_current_limit * 0.1f);
+    float margin = 0.2f;
+    if (abs_ccap > k_vcap_current_limit * 0.95f) {
+        margin = 0.2f * (k_vcap_current_limit - abs_ccap) / (k_vcap_current_limit * 0.05f);
         if (margin < 0.0f) margin = 0.0f;
     }
 
-    float charge_margin    = (ccap > 0.0f) ? margin : 0.1f;
-    float discharge_margin = (ccap < 0.0f) ? margin : 0.1f;
+    float charge_margin    = (ccap > 0.0f) ? margin : 0.2f;
+    float discharge_margin = (ccap < 0.0f) ? margin : 0.2f;
 
     float upper_bound = ffd_ratio + charge_margin;
     float lower_bound = ffd_ratio - discharge_margin;
