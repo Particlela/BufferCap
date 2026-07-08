@@ -48,7 +48,7 @@ public:
 
     static constexpr float k_p_charge_max       = 190.0f;
     static constexpr float k_bus_power_min      = 10.0f;
-    static constexpr float k_vcap_current_limit = 50.0f;
+    static constexpr float k_vcap_current_limit = 70.0f;
     static constexpr float k_power_ramp_rate    = 10000.0f;
     static constexpr float k_charge_power_margin = 10.0f;
 

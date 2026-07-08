@@ -300,7 +300,7 @@ void ControlTask::computeControlLoop()
 
     float abs_ccap = (ccap < 0.0f) ? -ccap : ccap;
     float margin = 0.2f;
-    if (abs_ccap > k_vcap_current_limit * 0.8f) {
+    if (abs_ccap > k_vcap_current_limit * 0.9f) {
         margin = 0.2f * (k_vcap_current_limit - abs_ccap) / (k_vcap_current_limit * 0.2f);
         if (margin < 0.0f) margin = 0.0f;
     }
